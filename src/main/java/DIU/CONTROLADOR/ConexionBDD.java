@@ -11,15 +11,16 @@ import java.sql.SQLException;
  *
  * @author Usuario
  */
+
 public class ConexionBDD {
-    java.sql.Connection conexion;
+   java.sql.Connection conexion;
      public java.sql.Connection conectar(){
         //LANZAR CÓDIGO DE PRUEBA 
         try {
             //Manera de Conexión a la Base de Datos
             Class.forName("com.mysql.jdbc.Driver");
             //Parámetros de conexión url/usuario/clave en mysql
-            conexion=DriverManager.getConnection("jdbc:mysql://localhost/registro_de_resoluciones_oss?autoReconnect=true&useSSL=false","root","proot69-");
+            conexion=DriverManager.getConnection("jdbc:mysql://localhost/resoluciones?autoReconnect=true&useSSL=false","root","proot69-");
             System.out.println("CONECTADO"); 
         } catch (ClassNotFoundException | SQLException e)//CAPTURAR ERRORES 
         {
@@ -27,6 +28,6 @@ public class ConexionBDD {
         }
         return conexion;
     }
- 
+   
 }
 

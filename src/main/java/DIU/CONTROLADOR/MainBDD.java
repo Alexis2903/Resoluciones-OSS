@@ -14,8 +14,8 @@ public class MainBDD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-ConexionBDD Conecion=new ConexionBDD();
-Conecion.conectar();
+        ConexionBDD conectar=new ConexionBDD();
+        conectar.conectar();
 
     }
     

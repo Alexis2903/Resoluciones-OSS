@@ -11,7 +11,7 @@
         <maven.compiler.target>15</maven.compiler.target>
         <exec.mainClass>com.mycompany.resolucionesoss.ResolucionesOSS</exec.mainClass>
     </properties>
-        <dependencies>
+     <dependencies>
         
         <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
         <dependency>
