@@ -64,5 +64,31 @@ public class PersonaControlador {
     }
 }
 
+ public ArrayList<Object[]> datosPersona() {
+        ArrayList<Object[]> listaObject=new ArrayList<>();
+        
+        try {
+            String sql = "call ListarPersonas();";
+            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+            resultado = ejecutar.executeQuery();
+            int cont = 1;
+            while (resultado.next()) {
+                Object[] obpersona = new Object[5];
+                for (int i = 1; i < 5; i++) {
+                    obpersona[i] = resultado.getObject(i+1);
+                }
+                obpersona[0]=cont;
+                listaObject.add(obpersona);
+                cont++;
+            }
+            ejecutar.close();
+            return listaObject;
+            
+        } catch (SQLException e) {
+            System.out.println("ERROR SQL CARGA PERSONAS");
 
+        }
+
+        return null;
+    }
 }

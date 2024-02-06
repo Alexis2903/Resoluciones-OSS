@@ -34,25 +34,25 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         tblPersonas.setModel(modelo);
     }
     
-        public void setDatos() {
-        Object[] filas = new Object[modelo.getColumnCount()];
-        int cont = 1;
-        for (Persona puntero : listaPersonas) {
-            System.out.println("--" + puntero);
-            filas[0] = cont;
-            filas[1] = puntero.getNombres();
-            filas[2] = puntero.getApellidos();
-            filas[3] = puntero.getTelefono();
-            filas[4] = puntero.getCorreo();
-            modelo.addRow(filas);
-            cont++;
-        }
-        tblPersonas.setModel(modelo);
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtTelefono.setText("");
-        txtCorreo.setText("");
+ public void setDatos() {
+    Object[] filas = new Object[modelo.getColumnCount()];
+    int cont = 1;
+    for (Persona puntero : listaPersonas) {
+        System.out.println("--" + puntero);
+        filas[0] = cont;  // Assuming this is the Nro. column
+        filas[1] = puntero.getNombres();
+        filas[2] = puntero.getApellidos();
+        filas[3] = puntero.getTelefono();
+        filas[4] = puntero.getCorreo();
+        modelo.addRow(filas);
+        cont++;
     }
+    tblPersonas.setModel(modelo);
+    txtNombres.setText("");
+    txtApellidos.setText("");
+    txtTelefono.setText("");
+    txtCorreo.setText("");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,15 +84,16 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        lblTitulo.setText("Bienvenido a la gestion de personas");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTitulo.setText("Bienvenido a la Gestión de Personas");
 
-        lblNombres.setText("Nombres");
+        lblNombres.setText("Nombres:");
 
-        lblApellidos.setText("Apellidos");
+        lblApellidos.setText("Apellidos:");
 
-        lblTelefono.setText("Telefono");
+        lblTelefono.setText("Telefono:");
 
-        lblCorreo.setText("Correo");
+        lblCorreo.setText("Correo:");
 
         bttnActualizar.setText("ACTUALIZAR");
 
@@ -124,7 +125,7 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -145,51 +146,56 @@ public class GestionPersona extends javax.swing.JInternalFrame {
                             .addComponent(txtCorreo))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(bttnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                        .addComponent(bttnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(bttnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                    .addComponent(bttnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bttnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bttnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bttnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(254, 254, 254))))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+                .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(lblTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblTitulo)
-                .addGap(44, 44, 44)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefono)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNombres)
                             .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bttnCrear))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblApellidos)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bttnBuscar))
-                        .addGap(47, 47, 47)
-                        .addComponent(bttnActualizar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTelefono)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblApellidos)
+                                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(bttnBuscar)))
+                        .addGap(48, 48, 48)
+                        .addComponent(bttnActualizar)
+                        .addGap(38, 38, 38)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttnEliminar)
                     .addComponent(lblCorreo)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -202,6 +208,8 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         pC.crearPersona(pM);
         listaPersonas.add(pM);
         setDatos();
+        limpiarTabla();
+        cargarPersonas();
         tblPersonas.setModel(modelo);
     }//GEN-LAST:event_bttnCrearActionPerformed
       
@@ -214,6 +222,15 @@ public class GestionPersona extends javax.swing.JInternalFrame {
             //System.out.println("i "+i);    //Para mostrar por consola el resultado
             modelo.removeRow(i);
         }
+    }
+    private void cargarPersonas() {
+        PersonaControlador pC = new PersonaControlador();
+        ArrayList<Object[]> listaFilas = pC.datosPersona();
+        for (Object[] listaFila : listaFilas) {
+            modelo.addRow(listaFila);
+        }
+        tblPersonas.setModel(modelo);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

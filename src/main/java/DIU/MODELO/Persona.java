@@ -10,11 +10,14 @@ package DIU.MODELO;
  */
 public class Persona {
     
+    
     private String Nombres ;
     private String Apellidos;
     private String telefono;
     private String correo;
-
+    
+    
+    
     public String getNombres() {
         return Nombres;
     }
