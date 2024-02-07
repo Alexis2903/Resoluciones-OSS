@@ -315,6 +315,7 @@ public void setDatos() {
      cargarPersonas();    
     }//GEN-LAST:event_formInternalFrameActivated
 
+
     private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
        // TODO add your handling code here:
       try {
@@ -339,6 +340,7 @@ public void setDatos() {
         JOptionPane.showMessageDialog(null, "Ingrese una cédula válida para eliminar la persona.");
     }  
     }//GEN-LAST:event_bttnEliminarActionPerformed
+
       
 
     

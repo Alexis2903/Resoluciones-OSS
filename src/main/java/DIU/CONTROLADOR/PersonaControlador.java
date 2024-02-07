@@ -57,6 +57,7 @@ public void insertarPersona(Persona p) {
         }
     } catch (SQLException e) {
        JOptionPane.showMessageDialog( null, "ERROR SQL");
+
     }
 }
 
@@ -89,10 +90,10 @@ public ArrayList<Object[]> datosPersona() {
 
     return null;
 }
-
-    public ArrayList<Object[]> buscarPersona(String cedula) {
+public ArrayList<Object[]> buscarPersona(String cedula) {
     ArrayList<Object[]> listaObject = new ArrayList<>();
     try {
+        // Llamar al procedimiento almacenado sp_BuscarPersonaPorCedula
         String sql = "{CALL sp_BuscarPersonaPorCedula(?)}";
         ejecutar = (PreparedStatement) conectado.prepareCall(sql);
         ejecutar.setString(1, cedula);
@@ -122,25 +123,32 @@ public ArrayList<Object[]> datosPersona() {
     
 public void actualizarPersona(String cedula, String nuevosNombres, String nuevosApellidos, String nuevoTelefono, String nuevoCorreo) {
     try {
+        // Llamada al procedimiento almacenado
         String sql = "{CALL sp_ActualizarPersona(?, ?, ?, ?, ?)}";
         ejecutar = conectado.prepareCall(sql);
 
+        // Configuración de los parámetros, permitiendo nulos
         ejecutar.setString(1, cedula);
         ejecutar.setString(2, nuevosNombres);
         ejecutar.setString(3, nuevosApellidos);
         ejecutar.setString(4, nuevoTelefono);
         ejecutar.setString(5, nuevoCorreo);
+
+        // Ejecución del procedimiento almacenado
         ejecutar.executeUpdate();
+
+        // Cierre del PreparedStatement
         ejecutar.close();
 
         JOptionPane.showMessageDialog(null, "Persona actualizada con éxito.");
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona. Revise los datos ingresados.");
         System.out.println("Error SQL: " + e.getMessage());
+
     }
 }
 
-    public void eliminarPersona(String cedula) {
+public void eliminarPersona(String cedula) {
         try {
             String sql = "{CALL sp_EliminarPersona(?)}";
             ejecutar = (PreparedStatement) conectado.prepareCall(sql);
