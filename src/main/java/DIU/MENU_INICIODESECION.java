@@ -44,19 +44,18 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bttnIS.setText("Iniciar Sesión");
+        bttnIS.setText("Iniciar secion");
         bttnIS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnISActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Modern No. 20", 1, 24)); // NOI18N
-        jLabel1.setText("Inicio de Sesión ");
+        jLabel1.setText("Inicio de secion");
 
-        jLabel2.setText("Ingrese el usuario:");
+        jLabel2.setText("Ingrese el usuario");
 
-        jLabel3.setText("Ingrese la contraseña:");
+        jLabel3.setText("Ingrese la contraseña");
 
         bttnCreacionCuenta.setText("Crear cuanta");
         bttnCreacionCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -94,46 +93,45 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(103, 103, 103)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(bttnIS))
+                            .addComponent(jLabel3))
+                        .addGap(92, 92, 92)
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(txtContraseña)))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(bttnIS)
+                        .addGap(68, 68, 68)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(escritorioLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(escritorioLayout.createSequentialGroup()
-                                .addGap(31, 31, 31)
                                 .addComponent(bttnRecuperar)
-                                .addGap(28, 28, 28)
-                                .addComponent(bttnCreacionCuenta))))
-                    .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jLabel1)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                                .addGap(101, 101, 101)
+                                .addComponent(bttnCreacionCuenta))
+                            .addComponent(jLabel1))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(57, 57, 57)
+                .addGap(92, 92, 92)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(80, 80, 80)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttnIS)
-                    .addComponent(bttnRecuperar)
-                    .addComponent(bttnCreacionCuenta))
-                .addGap(60, 60, 60))
+                    .addComponent(bttnCreacionCuenta)
+                    .addComponent(bttnRecuperar))
+                .addGap(81, 81, 81))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,7 +140,7 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

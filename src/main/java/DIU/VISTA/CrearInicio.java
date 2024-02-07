@@ -58,26 +58,25 @@ public class CrearInicio extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel1.setText("Crear Cuenta");
 
-        jLabel2.setText("Ingrese su Cédula:");
+        jLabel2.setText("Ingrese su cedula");
 
-        jLabel3.setText("Ingrese el Actor:");
+        jLabel3.setText("Ingrese el Actor");
 
-        jLabel4.setText("Ingrese sus Nombres:");
+        jLabel4.setText("Ingrese sus Nombres");
 
-        jLabel5.setText("Ingrese sus apellidos:");
+        jLabel5.setText("Ingrese sus apellidos");
 
-        jLabel6.setText("Ingrese su Teléfono:");
+        jLabel6.setText("Ingrese su telefono");
 
-        jLabel7.setText("Ingrese su correo:");
+        jLabel7.setText("Ingrese su correo");
 
-        jLabel8.setText("Ingrese su usuario:");
+        jLabel8.setText("Ingrese su usuario");
 
-        jLabel9.setText("Ingrese su clave:");
+        jLabel9.setText("Ingrese su clave");
 
-        jLabel10.setText("Ingrese su carrera:");
+        jLabel10.setText("Ingrese su carrera");
 
         bttnCrear.setText("Crear cuenta");
         bttnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -116,19 +115,19 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                             .addComponent(txtAc)
                             .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addComponent(bttnCrear))
+                        .addGap(214, 214, 214)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(223, 223, 223)
+                        .addComponent(bttnCrear)))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -168,9 +167,8 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))))
-                .addGap(18, 18, 18)
-                .addComponent(bttnCrear)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(bttnCrear))
         );
 
         pack();

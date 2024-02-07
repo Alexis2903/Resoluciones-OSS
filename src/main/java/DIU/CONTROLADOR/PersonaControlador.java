@@ -35,60 +35,128 @@ public class PersonaControlador {
   this.persona=persona;
     }
   
-  public void crearPersona(Persona p) {
+public void insertarPersona(Persona p) {
     try {
-        String SQL = "CALL CrearPersona(?, ?, ?, ?)";
-        ejecutar = conectado.prepareStatement(SQL);
-        ejecutar.setString(1, p.getNombres());
-        ejecutar.setString(2, p.getApellidos());
-        ejecutar.setString(3, p.getTelefono());
-        ejecutar.setString(4, p.getCorreo());
-
-        int res = ejecutar.executeUpdate();
-        if (res > 0) {
-            JOptionPane.showMessageDialog(null, "PERSONA CREADA CON ÉXITO");
+        // Call the stored procedure to create a person
+        String sql = "{CALL CrearPersona(?, ?, ?, ?, ?)}";
+        ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+        ejecutar.setString(1, p.getCedula());
+        ejecutar.setString(2, p.getNombres());
+        ejecutar.setString(3, p.getApellidos());
+        ejecutar.setString(4, p.getTelefono());
+        ejecutar.setString(5, p.getCorreo());
+        
+        // Execute the stored procedure
+        var resultado = ejecutar.executeUpdate();
+        
+        if (resultado > 0) {
+            JOptionPane.showMessageDialog(null, "Persona Creada con Éxito");
+            ejecutar.close();
         } else {
-            JOptionPane.showMessageDialog(null, "REVISAR LA INFORMACIÓN INGRESADA");
+            JOptionPane.showMessageDialog(null, "Revise los Datos ingresados");
         }
     } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "COMUNICARSE CON EL ADMINISTRADOR");
-    } finally {
-        try {
-            if (ejecutar != null) {
-                ejecutar.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+       JOptionPane.showMessageDialog( null, "ERROR SQL");
     }
 }
 
- public ArrayList<Object[]> datosPersona() {
-        ArrayList<Object[]> listaObject=new ArrayList<>();
-        
-        try {
-            String sql = "call ListarPersonas();";
-            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
-            resultado = ejecutar.executeQuery();
-            int cont = 1;
-            while (resultado.next()) {
-                Object[] obpersona = new Object[5];
-                for (int i = 1; i < 5; i++) {
-                    obpersona[i] = resultado.getObject(i+1);
-                }
-                obpersona[0]=cont;
-                listaObject.add(obpersona);
-                cont++;
-            }
-            ejecutar.close();
-            return listaObject;
-            
-        } catch (SQLException e) {
-            System.out.println("ERROR SQL CARGA PERSONAS");
+public ArrayList<Object[]> datosPersona() {
+    ArrayList<Object[]> listaObject = new ArrayList<>();
 
+    try {
+        String sql = "CALL sp_listaPersonas();";
+        ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+        resultado = ejecutar.executeQuery();
+        int cont = 1;
+
+        while (resultado.next()) {
+            Object[] obpersona = new Object[6];
+            obpersona[0] = cont;
+            obpersona[1] = resultado.getObject("CEDULA_PERSONA");
+            obpersona[2] = resultado.getObject("NOMBRES");
+            obpersona[3] = resultado.getObject("APELLIDOS");
+            obpersona[4] = resultado.getObject("TELEFONO");
+            obpersona[5] = resultado.getObject("CORREO");
+            listaObject.add(obpersona);
+            cont++;
         }
+        ejecutar.close();
+        return listaObject;
 
-        return null;
+    } catch (SQLException e) {
+        System.out.println("ERROR SQL CARGA PERSONAS");
     }
+
+    return null;
+}
+
+    public ArrayList<Object[]> buscarPersona(String cedula) {
+    ArrayList<Object[]> listaObject = new ArrayList<>();
+    try {
+        String sql = "{CALL sp_BuscarPersonaPorCedula(?)}";
+        ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+        ejecutar.setString(1, cedula);
+        resultado = ejecutar.executeQuery();
+
+        int cont = 1;
+        while (resultado.next()) {
+            Object[] obpersona = new Object[6];
+            obpersona[0] = cont;
+            obpersona[1] = resultado.getObject("NOMBRES");
+            obpersona[2] = resultado.getObject("APELLIDOS");
+            obpersona[3] = resultado.getObject("TELEFONO");
+            obpersona[4] = resultado.getObject("CORREO");
+
+            listaObject.add(obpersona);
+            cont++;
+        }
+        ejecutar.close();
+        return listaObject;
+
+    } catch (SQLException e) {
+        System.out.println("ERROR SQL: " + e.getMessage());
+        e.printStackTrace();
+    }
+    return null;
+}
+    
+public void actualizarPersona(String cedula, String nuevosNombres, String nuevosApellidos, String nuevoTelefono, String nuevoCorreo) {
+    try {
+        String sql = "{CALL sp_ActualizarPersona(?, ?, ?, ?, ?)}";
+        ejecutar = conectado.prepareCall(sql);
+
+        ejecutar.setString(1, cedula);
+        ejecutar.setString(2, nuevosNombres);
+        ejecutar.setString(3, nuevosApellidos);
+        ejecutar.setString(4, nuevoTelefono);
+        ejecutar.setString(5, nuevoCorreo);
+        ejecutar.executeUpdate();
+        ejecutar.close();
+
+        JOptionPane.showMessageDialog(null, "Persona actualizada con éxito.");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona. Revise los datos ingresados.");
+        System.out.println("Error SQL: " + e.getMessage());
+    }
+}
+
+    public void eliminarPersona(String cedula) {
+        try {
+            String sql = "{CALL sp_EliminarPersona(?)}";
+            ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+            ejecutar.setString(1, cedula);
+
+            // Ejecutar el stored procedure para eliminar la persona
+            ejecutar.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Persona eliminada con éxito");
+
+            ejecutar.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar la persona. Revise los datos ingresados.");
+        }
+    }
+
+
+
 }
