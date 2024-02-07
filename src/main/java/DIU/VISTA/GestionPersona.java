@@ -316,7 +316,7 @@ public void setDatos() {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
       try {
         String cedulaAEliminar = txtCedulaP.getText();
 

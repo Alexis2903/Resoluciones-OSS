@@ -16,15 +16,13 @@ public class Persona {
     private String telefono;
     private String correo;
 
-    public Persona(String Cedula, String Nombres, String Apellidos, String telefono, String correo) {
-        this.Cedula = Cedula;
-        this.Nombres = Nombres;
-        this.Apellidos = Apellidos;
-        this.telefono = telefono;
-        this.correo = correo;
+    public String getCedula() {
+        return Cedula;
     }
 
-   
+    public void setCedula(String Cedula) {
+        this.Cedula = Cedula;
+    }
 
     public String getNombres() {
         return Nombres;
@@ -58,16 +56,16 @@ public class Persona {
         this.correo = correo;
     }
 
-    public String getCedula() {
-        return Cedula;
-    }
-
-    public void setCedula(String Cedula) {
+    public Persona(String Cedula, String Nombres, String Apellidos, String telefono, String correo) {
         this.Cedula = Cedula;
+        this.Nombres = Nombres;
+        this.Apellidos = Apellidos;
+        this.telefono = telefono;
+        this.correo = correo;
     }
-    
-    
 
+   
+    
     
     
     

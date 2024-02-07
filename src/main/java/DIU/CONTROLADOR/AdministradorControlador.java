@@ -70,7 +70,6 @@ public class AdministradorControlador {
 
     public void insertarAdministrador(Administrador admin) {
         try {
-            // Aquí deberías ajustar los parámetros del stored procedure según tus necesidades
             String sql = "call sp_CrearCuenta('" + admin.getCedulaPersona() + "','" + admin.getIdActor() + "','" +
                           admin.getNombres() + "','" + admin.getApellidos() + "','" + admin.getTelefono() + "','" +
                           admin.getCorreo() + "','" + admin.getUsuario() + "','" + admin.getContrasena() + "','" +
@@ -106,7 +105,7 @@ public class AdministradorControlador {
     }
       public int recuperarContraseña(Administrador_RC admiRC) {
     try {
-        // Ajusta los parámetros según tus necesidades
+        
         String sql = "CALL sp_RecuperarContraseña('" + admiRC.getCedula() + "','" + admiRC.getCorreo() + "','" + admiRC.getNuevaContraseña() + "','" + admiRC.getConfirmarContraseña() + "')";
         CallableStatement call = conectar.prepareCall(sql);
 
@@ -114,7 +113,7 @@ public class AdministradorControlador {
         if (result.next()) {
             return result.getInt("resultado");
         } else {
-            return 0; // Error desconocido
+            return 0;
         }
     } catch (SQLException e) {
         System.out.println("ERROR SQL: " + e.getMessage());
