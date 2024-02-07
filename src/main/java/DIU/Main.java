@@ -14,9 +14,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MENU menu=new MENU();
+        MENU_ACTOR_D_G_C menu=new MENU_ACTOR_D_G_C();
         menu.setVisible(true);
+        
+        MENU_INICIODESECION menuIS=new MENU_INICIODESECION();
+        menuIS.setVisible(true);
     }
+       
     }
     
 

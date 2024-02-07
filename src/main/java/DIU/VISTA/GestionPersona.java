@@ -6,7 +6,9 @@ package DIU.VISTA;
 
 import DIU.CONTROLADOR.PersonaControlador;
 import DIU.MODELO.Persona;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,11 +16,10 @@ import javax.swing.table.DefaultTableModel;
  * @author jefe
  */
 public class GestionPersona extends javax.swing.JInternalFrame {
-
-    
+   
     ArrayList<Persona> listaPersonas = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel();
-
+   
     /**
      * Creates new form Persona
      */
@@ -28,31 +29,36 @@ public class GestionPersona extends javax.swing.JInternalFrame {
     }
 
     
-    public void setModelo() {
-        String[] cabecera = {"Nro.", "Nombres", "Apellidos", "Telefono", "Correo"};
+public void setModelo() {
+        String[] cabecera = {"Nº","Cedula", "Nombres", "Apellidos", "Telefono", "Correo"};
         modelo.setColumnIdentifiers(cabecera);
         tblPersonas.setModel(modelo);
     }
-    
-        public void setDatos() {
+public void setDatos() {
+    limpiarTabla();
+
+    int cont = 1;
+    for (Persona puntero : listaPersonas) {
         Object[] filas = new Object[modelo.getColumnCount()];
-        int cont = 1;
-        for (Persona puntero : listaPersonas) {
-            System.out.println("--" + puntero);
-            filas[0] = cont;
-            filas[1] = puntero.getNombres();
-            filas[2] = puntero.getApellidos();
-            filas[3] = puntero.getTelefono();
-            filas[4] = puntero.getCorreo();
-            modelo.addRow(filas);
-            cont++;
-        }
-        tblPersonas.setModel(modelo);
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtTelefono.setText("");
-        txtCorreo.setText("");
+        System.out.println("--" + puntero);
+        filas[0] = cont;
+        filas[1] = puntero.getCedula();
+        filas[2] = puntero.getNombres();
+        filas[3] = puntero.getApellidos();
+        filas[4] = puntero.getTelefono();
+        filas[5] = puntero.getCorreo();
+        modelo.addRow(filas);
+        cont++;
     }
+    tblPersonas.setModel(modelo);
+
+    txtCedulaP.setText("");
+    txtNombres.setText("");
+    txtApellidos.setText("");
+    txtTelefono.setText("");
+    txtCorreo.setText("");
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,13 +82,32 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         bttnEliminar = new javax.swing.JButton();
         bttnCrear = new javax.swing.JButton();
         bttnBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel1 = new javax.swing.JLabel();
+        txtCedulaP = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tblPersonas = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         lblTitulo.setText("Bienvenido a la gestion de personas");
 
@@ -95,6 +120,11 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         lblCorreo.setText("Correo");
 
         bttnActualizar.setText("ACTUALIZAR");
+        bttnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnActualizarActionPerformed(evt);
+            }
+        });
 
         bttnEliminar.setText("ELIMINAR");
 
@@ -106,6 +136,13 @@ public class GestionPersona extends javax.swing.JInternalFrame {
         });
 
         bttnBuscar.setText("BUSCAR");
+        bttnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Cedula");
 
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,7 +155,7 @@ public class GestionPersona extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblPersonas);
+        jScrollPane2.setViewportView(tblPersonas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,70 +163,85 @@ public class GestionPersona extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(lblApellidos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(326, 326, 326)
+                .addComponent(lblTitulo)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblApellidos)
-                            .addComponent(lblNombres))
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                            .addComponent(txtApellidos)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 134, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCorreo)
-                            .addComponent(lblTelefono))
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTelefono)
+                            .addComponent(lblNombres)
+                            .addComponent(jLabel1))
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTelefono)
-                            .addComponent(txtCorreo))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(bttnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                        .addComponent(bttnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(bttnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(254, 254, 254))))
+                            .addComponent(txtCorreo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtNombres)
+                            .addComponent(txtCedulaP))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bttnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(87, 87, 87))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(bttnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(87, 87, 87))
+                                .addComponent(bttnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bttnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addComponent(lblTitulo)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtCedulaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNombres)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bttnCrear))
-                        .addGap(40, 40, 40)
+                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblApellidos)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bttnBuscar))
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefono)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(bttnCrear)
+                        .addGap(48, 48, 48)
+                        .addComponent(bttnBuscar)
                         .addGap(47, 47, 47)
-                        .addComponent(bttnActualizar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTelefono)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bttnActualizar)
+                        .addGap(38, 38, 38)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bttnEliminar)
-                    .addComponent(lblCorreo)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCorreo)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,31 +249,95 @@ public class GestionPersona extends javax.swing.JInternalFrame {
 
     private void bttnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearActionPerformed
         // TODO add your handling code here:
-        Persona pM = new Persona(txtNombres.getText(), txtApellidos.getText(), txtTelefono.getText(), txtCorreo.getText());
-        PersonaControlador pC=new PersonaControlador();
-        pC.crearPersona(pM);
-        listaPersonas.add(pM);
+        Persona P=new Persona(txtCedulaP.getText(), txtNombres.getText(), txtApellidos.getText(), txtTelefono.getText(), txtCorreo.getText());
+        PersonaControlador pC = new PersonaControlador();
+        pC.insertarPersona(P);
+        listaPersonas.add(P);
         setDatos();
+        limpiarTabla();
+        cargarPersonas();
         tblPersonas.setModel(modelo);
     }//GEN-LAST:event_bttnCrearActionPerformed
-      
-      
-     private void limpiarTabla() {
-        int a = modelo.getRowCount() - 1;  //Índices van de 0 a n-1
-        //System.out.println("Tabla "+a);   //Para mostrar por consola el resultado
-        for (int i = a; i >= 0; i--) {
 
-            //System.out.println("i "+i);    //Para mostrar por consola el resultado
+    
+    private void bttnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnBuscarActionPerformed
+
+        String cedula = txtCedulaP.getText();
+
+        if (!cedula.isEmpty()) {
+            limpiarTabla();
+            PersonaControlador pC = new PersonaControlador();
+            ArrayList<Object[]> listaFilas = pC.buscarPersona(cedula);
+
+            if (listaFilas != null && !listaFilas.isEmpty()) {
+                for (Object[] listaFila : listaFilas) {
+                    modelo.addRow(listaFila);
+                }
+                tblPersonas.setModel(modelo);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron resultados para la búsqueda.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una cédula para buscar.");
+        }
+    }//GEN-LAST:event_bttnBuscarActionPerformed
+    
+    
+    private void bttnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnActualizarActionPerformed
+    
+    String cedula = txtCedulaP.getText();
+    String nuevosNombres = txtNombres.getText();
+    String nuevosApellidos = txtApellidos.getText();
+    String nuevoTelefono = txtTelefono.getText();
+    String nuevoCorreo = txtCorreo.getText();
+
+    // Verificar que la cédula no esté vacía
+    if (cedula.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Ingrese una cédula válida para actualizar la información.");
+        return;
+    }
+
+    // Llamada al controlador para actualizar la persona
+    PersonaControlador controlador = new PersonaControlador();
+    controlador.actualizarPersona(cedula, nuevosNombres, nuevosApellidos, nuevoTelefono, nuevoCorreo);
+
+    }//GEN-LAST:event_bttnActualizarActionPerformed
+
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+   limpiarTabla();
+     cargarPersonas();    
+    }//GEN-LAST:event_formInternalFrameActivated
+      
+
+    
+    private void limpiarTabla() {
+        int a = modelo.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
 
+
+    private void cargarPersonas() {
+        PersonaControlador pC = new PersonaControlador();
+        ArrayList<Object[]> listaFilas = pC.datosPersona();
+        for (Object[] listaFila : listaFilas) {
+            modelo.addRow(listaFila);
+        }
+        tblPersonas.setModel(modelo);
+
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnActualizar;
     private javax.swing.JButton bttnBuscar;
     private javax.swing.JButton bttnCrear;
     private javax.swing.JButton bttnEliminar;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombres;
@@ -229,6 +345,7 @@ public class GestionPersona extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblPersonas;
     private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtCedulaP;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtTelefono;
