@@ -100,10 +100,9 @@ public class MENU_ACTOR_D_G_C extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         GestionPersona GP = new GestionPersona();
+    GestionPersona GP = new GestionPersona();
     escritorio.add(GP);
-    GP.setVisible(true);
-        
+    GP.setVisible(true);        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
