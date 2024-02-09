@@ -124,12 +124,28 @@ public void insertarAdministrador(Administrador admin) {
 
             return 0;
 
-        
-
         }
     } catch (SQLException e) {
         System.out.println("ERROR SQL: " + e.getMessage());
         return -1;
+    }
+}
+    public int obtenerRol(String usuario) {
+    try {
+        String consulta = "SELECT ID_ACTOR FROM PERSONA WHERE USUARIO = ?";
+        PreparedStatement ejecutar = conectar.prepareStatement(consulta);
+        ejecutar.setString(1, usuario);
+
+        ResultSet res = ejecutar.executeQuery();
+
+        if (res.next()) {
+            return res.getInt("ID_ACTOR");
+        } else {
+            return 0; 
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al obtener el rol: " + e.getMessage());
+        return 0;
     }
 }
 

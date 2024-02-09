@@ -174,30 +174,54 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
         // TODO add your handling code here:
     String usuario = txtUsuario.getText();
     String clave = new String(txtContraseña.getPassword());
-    
-    Administrador_IS admi= new Administrador_IS(usuario, clave);
-    AdministradorControlador controlador = new AdministradorControlador(admi);
-    boolean autenticado = controlador.autenticar(usuario, clave);
 
-    if (autenticado) {
-      JOptionPane.showMessageDialog(null, "Usted inicio secion");
-       
-        this.setVisible(false);
-        MENU_ACTOR_D_G_C menuActor = new MENU_ACTOR_D_G_C();
-        menuActor.setVisible(true);
-    } else {
-      JOptionPane.showMessageDialog(null, "Error al iniciar secion");
-    }
+    Administrador_IS admi = new Administrador_IS(usuario, clave);
+    AdministradorControlador controlador = new AdministradorControlador(admi);
+    int rol = controlador.obtenerRol(usuario); // Necesitas implementar este método para obtener el rol del usuario
+
+    switch (rol) {
+        case 1: 
+            JOptionPane.showMessageDialog(null, "Usted inició sesión como GESTOR");
+            this.setVisible(false);
+            
+            MENU_ACTOR_Gestor menuGestor = new MENU_ACTOR_Gestor();
+            menuGestor.setVisible(true);
+            break;
+        case 2: 
+             JOptionPane.showMessageDialog(null, "Usted inició sesión como DOCENTE");
+            this.setVisible(false);
+            
+            MENU_ACTOR_Docente menudocente = new MENU_ACTOR_Docente();
+            menudocente.setVisible(true);
+            break;
+        case 3:
+             JOptionPane.showMessageDialog(null, "Usted inició sesión como COORDINADOR");
+            this.setVisible(false);
+            
+            MENU_ACTOR_Coordinador menudocoordinador = new MENU_ACTOR_Coordinador();
+            menudocoordinador.setVisible(true);
+            break;
+        case 4: 
+             JOptionPane.showMessageDialog(null, "Usted inició sesión como MIEMBRO OSS");
+            this.setVisible(false);
+            
+            MENU_ACTOR_MiembroOSS menudomiembro = new MENU_ACTOR_MiembroOSS();
+            menudomiembro.setVisible(true);
+            break;
+        default:
+            JOptionPane.showMessageDialog(null, "Error al iniciar sesión");
+            break;
     
     }//GEN-LAST:event_bttnISActionPerformed
-
+}
+    
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void bttnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnRecuperarActionPerformed
         // TODO add your handling code here:
-       Recuperar_contraseña addrec = new Recuperar_contraseña();
+    Recuperar_contraseña addrec = new Recuperar_contraseña();
     escritorio.add(addrec);
     addrec.setVisible(true);
     }//GEN-LAST:event_bttnRecuperarActionPerformed

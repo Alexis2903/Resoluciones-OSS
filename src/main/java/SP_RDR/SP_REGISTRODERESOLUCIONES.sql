@@ -52,8 +52,8 @@ BEGIN
 END //
 
 DELIMITER ;
-Call sp_CrearCuentaUsuario('100', 'Gestor', 'alexis', 'xd', '0986432121', 'nose', 'alex', '123', 'dds');
-
+-- Call sp_CrearCuentaUsuario('100', 'Gestor', 'alexis', 'xd', '0986432121', 'nose', 'alex', '123', 'dds');
+ Call sp_CrearCuentaUsuario('4', 'Miembros OSS', 'Sara', 'Gómez', '0997693017', 'sara@', 'Miembor Srn', '123', 'Biologia');
 
 DELIMITER //
 

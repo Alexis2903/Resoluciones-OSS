@@ -97,6 +97,11 @@ public class CrearInicio extends javax.swing.JInternalFrame {
         });
 
         Roles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Gestor", "Docente", "Coordinador ", "Miembro OSS" }));
+        Roles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RolesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,21 +198,43 @@ public class CrearInicio extends javax.swing.JInternalFrame {
 
     private void bttnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearActionPerformed
         // TODO add your handling code here:
-   Administrador admin = new Administrador(txtCedula.getText(), Roles.getSelectedItem().toString(), txtNombres.getText(),
+    Administrador admin = new Administrador(txtCedula.getText(), Roles.getSelectedItem().toString(), txtNombres.getText(),
         txtApellidos.getText(), txtTel.getText(), txtCorreo.getText(),
         txtUsu.getText(), new String(pswClave.getPassword()), txtCarrera.getText());
 
-// Luego, utiliza este objeto al crear el controlador
-AdministradorControlador adminControlador = new AdministradorControlador(admin);
 
-// Ahora puedes utilizar adminControlador para insertar el administrador en la base de datos
-adminControlador.insertarAdministrador(admin);
+    AdministradorControlador adminControlador = new AdministradorControlador(admin);
 
-    JOptionPane.showMessageDialog(this, "Cuenta de Administrador creada con éxito");
-
-    // Aquí puedes añadir lógica adicional, como limpiar los campos del formulario
-    // y actualizar la tabla de personas si es necesario.
+    switch (Roles.getSelectedIndex()) {
+        case 1: 
+            adminControlador.insertarAdministrador(admin);
+            JOptionPane.showMessageDialog(this, "Cuenta de GESTOR creada con éxito");
+            
+            break;
+        case 2:
+             adminControlador.insertarAdministrador(admin);
+            JOptionPane.showMessageDialog(this, "Cuenta de Docente creada con éxito");
+           
+            break;
+        case 3:
+             adminControlador.insertarAdministrador(admin);
+            JOptionPane.showMessageDialog(this, "Cuenta de Cordinador creada con éxito");
+            
+            break;
+        case 4: 
+             adminControlador.insertarAdministrador(admin);
+            JOptionPane.showMessageDialog(this, "Cuenta de Miembro OSS creada con éxito");
+            
+            break;
+        default:
+           
+            break;
+        }
     }//GEN-LAST:event_bttnCrearActionPerformed
+
+    private void RolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RolesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RolesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,9 +14,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MENU_ACTOR_D_G_C menu=new MENU_ACTOR_D_G_C();
-        menu.setVisible(true);
         
+      
         MENU_INICIODESESION menuIS=new MENU_INICIODESESION();
         menuIS.setVisible(true);
     }
