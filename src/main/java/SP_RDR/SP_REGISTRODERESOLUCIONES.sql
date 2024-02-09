@@ -1,24 +1,28 @@
 DELIMITER //
 
-CREATE PROCEDURE sp_CrearCuenta(
-    IN p_CEDULA_PERSONA varchar(45),
-    IN p_ID_ACTOR varchar(45),
-    IN p_NOMBRES varchar(45),
-    IN p_APELLIDOS varchar(45),
-    IN p_TELEFONO varchar(10),
-    IN p_CORREO varchar(45),
-    IN p_USUARIO varchar(45),
-    IN p_CONTRASENA varchar(45),
-    IN p_CARRERA varchar(45)
+CREATE PROCEDURE sp_CrearCuentaUsuario(
+    IN p_CEDULA_PERSONA VARCHAR(45),
+    IN p_NOMBRE_ACTOR VARCHAR(45),  
+    IN p_NOMBRES VARCHAR(45),
+    IN p_APELLIDOS VARCHAR(45),
+    IN p_TELEFONO VARCHAR(10),
+    IN p_CORREO VARCHAR(45),
+    IN p_USUARIO VARCHAR(45),
+    IN p_CONTRASENA VARCHAR(45),
+    IN p_CARRERA VARCHAR(45)
 )
 BEGIN
+    DECLARE v_ID_ACTOR VARCHAR(45);
+
     DECLARE exit handler for sqlexception
     BEGIN
-        -- Manejar excepciones si es necesario
         ROLLBACK;
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Error al crear la cuenta';
     END;
+
+    -- Obtener el ID del actor usando el tipo
+    SELECT ID_ACTOR INTO v_ID_ACTOR FROM ACTOR WHERE TIPO = p_NOMBRE_ACTOR;
 
     START TRANSACTION;
 
@@ -34,7 +38,7 @@ BEGIN
         CARRERA
     ) VALUES (
         p_CEDULA_PERSONA,
-        p_ID_ACTOR,
+        v_ID_ACTOR,  
         p_NOMBRES,
         p_APELLIDOS,
         p_TELEFONO,
@@ -48,6 +52,8 @@ BEGIN
 END //
 
 DELIMITER ;
+Call sp_CrearCuentaUsuario('100', 'Gestor', 'alexis', 'xd', '0986432121', 'nose', 'alex', '123', 'dds');
+
 
 DELIMITER //
 

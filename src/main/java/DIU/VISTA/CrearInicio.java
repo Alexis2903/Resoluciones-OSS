@@ -43,7 +43,6 @@ public class CrearInicio extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        txtAc = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         txtTel = new javax.swing.JTextField();
@@ -52,6 +51,7 @@ public class CrearInicio extends javax.swing.JInternalFrame {
         txtCarrera = new javax.swing.JTextField();
         pswClave = new javax.swing.JPasswordField();
         bttnCrear = new javax.swing.JButton();
+        Roles = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,6 +96,8 @@ public class CrearInicio extends javax.swing.JInternalFrame {
             }
         });
 
+        Roles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Gestor", "Docente", "Coordinador ", "Miembro OSS" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,8 +128,8 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                                     .addComponent(txtTel)
                                     .addComponent(txtApellidos)
                                     .addComponent(txtNombres)
-                                    .addComponent(txtAc)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Roles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(163, 163, 163)
                                 .addComponent(bttnCrear))))
@@ -150,7 +152,7 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txtAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Roles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +193,7 @@ public class CrearInicio extends javax.swing.JInternalFrame {
 
     private void bttnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearActionPerformed
         // TODO add your handling code here:
-    Administrador admin = new Administrador(txtCedula.getText(), txtAc.getText(), txtNombres.getText(),
+   Administrador admin = new Administrador(txtCedula.getText(), Roles.getSelectedItem().toString(), txtNombres.getText(),
         txtApellidos.getText(), txtTel.getText(), txtCorreo.getText(),
         txtUsu.getText(), new String(pswClave.getPassword()), txtCarrera.getText());
 
@@ -209,6 +211,7 @@ adminControlador.insertarAdministrador(admin);
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Roles;
     private javax.swing.JButton bttnCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -221,7 +224,6 @@ adminControlador.insertarAdministrador(admin);
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField pswClave;
-    private javax.swing.JTextField txtAc;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtCedula;

@@ -11,7 +11,7 @@ package DIU.MODELO;
 public class Administrador {
   
     private String cedulaPersona;
-    private String idActor;
+    private String nombre_actor;
     private String nombres;
     private String apellidos;
     private String telefono;
@@ -19,18 +19,6 @@ public class Administrador {
     private String usuario;
     private String contrasena;
     private String carrera;
-
-    public Administrador(String cedulaPersona, String idActor, String nombres, String apellidos, String telefono, String correo, String usuario, String contrasena, String carrera) {
-        this.cedulaPersona = cedulaPersona;
-        this.idActor = idActor;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.carrera = carrera;
-    }
 
     public String getCedulaPersona() {
         return cedulaPersona;
@@ -40,12 +28,12 @@ public class Administrador {
         this.cedulaPersona = cedulaPersona;
     }
 
-    public String getIdActor() {
-        return idActor;
+    public String getNombre_actor() {
+        return nombre_actor;
     }
 
-    public void setIdActor(String idActor) {
-        this.idActor = idActor;
+    public void setNombre_actor(String nombre_actor) {
+        this.nombre_actor = nombre_actor;
     }
 
     public String getNombres() {
@@ -104,7 +92,18 @@ public class Administrador {
         this.carrera = carrera;
     }
 
-    
+    public Administrador(String cedulaPersona, String nombre_actor, String nombres, String apellidos, String telefono, String correo, String usuario, String contrasena, String carrera) {
+        this.cedulaPersona = cedulaPersona;
+        this.nombre_actor = nombre_actor;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.carrera = carrera;
+    }
+
     
     
 }

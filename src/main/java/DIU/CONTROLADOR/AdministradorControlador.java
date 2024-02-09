@@ -66,30 +66,33 @@ public class AdministradorControlador {
         this.admi = admi;
     }
 
+public void insertarAdministrador(Administrador admin) {
+    try {
+        // Utiliza marcadores de posición en la llamada al stored procedure
+        String sql = "{call sp_CrearCuentaUsuario(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+        try (CallableStatement cs = conectar.prepareCall(sql)) {
+            // Establece los parámetros del stored procedure utilizando setString
+            cs.setString(1, admin.getCedulaPersona());
+            cs.setString(2, admin.getNombre_actor());
+            cs.setString(3, admin.getNombres());
+            cs.setString(4, admin.getApellidos());
+            cs.setString(5, admin.getTelefono());
+            cs.setString(6, admin.getCorreo());
+            cs.setString(7, admin.getUsuario());
+            cs.setString(8, admin.getContrasena());
+            cs.setString(9, admin.getCarrera());
 
+            // Ejecuta el stored procedure
+            cs.executeUpdate();
 
-    public void insertarAdministrador(Administrador admin) {
-        try {
-
-            // Aquí deberías ajustar los parámetros del stored procedure según tus necesidades
-
-            String sql = "call sp_CrearCuenta('" + admin.getCedulaPersona() + "','" + admin.getIdActor() + "','" +
-                          admin.getNombres() + "','" + admin.getApellidos() + "','" + admin.getTelefono() + "','" +
-                          admin.getCorreo() + "','" + admin.getUsuario() + "','" + admin.getContrasena() + "','" +
-                          admin.getCarrera() + "');";
-            ejecutar = (PreparedStatement) conectar.prepareCall(sql);
-            int resultado = ejecutar.executeUpdate();
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Cuenta de Administrador Creada con Éxito");
-                ejecutar.close();
-            } else {
-                JOptionPane.showMessageDialog(null, "Revise los Datos ingresados");
-            }
-        } catch (SQLException e) {
-            System.out.println("ERROR SQL");
+            JOptionPane.showMessageDialog(null, "Cuenta de Administrador Creada con Éxito");
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "ERROR SQL: " + e.getMessage());
     }
-    
+}
+
       public boolean autenticar(String usuario, String contrasena) {
         try {
             String consulta = "SELECT * FROM PERSONA WHERE USUARIO = ? AND CONTRASENA = ?";
