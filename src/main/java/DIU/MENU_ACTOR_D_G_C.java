@@ -45,9 +45,14 @@ public class MENU_ACTOR_D_G_C extends javax.swing.JFrame {
 
         jButton2.setText("REALIZAR SOLICITUD");
 
-        jButton3.setText("REGISTRAR RESOLUCION");
+        jButton3.setText("REGISTRAR RESOLUCIÓN");
 
-        jButton4.setText("REUNION");
+        jButton4.setText("REUNIÓN");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -104,6 +109,10 @@ public class MENU_ACTOR_D_G_C extends javax.swing.JFrame {
     escritorio.add(GP);
     GP.setVisible(true);        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

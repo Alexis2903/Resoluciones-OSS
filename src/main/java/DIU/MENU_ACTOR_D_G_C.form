@@ -86,13 +86,16 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="REGISTRAR RESOLUCION"/>
+            <Property name="text" type="java.lang.String" value="REGISTRAR RESOLUCI&#xd3;N"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="REUNION"/>
+            <Property name="text" type="java.lang.String" value="REUNI&#xd3;N"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

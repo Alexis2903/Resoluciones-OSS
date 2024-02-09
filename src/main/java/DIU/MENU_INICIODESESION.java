@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author jefe
  */
-public class MENU_INICIODESECION extends javax.swing.JFrame {
+public class MENU_INICIODESESION extends javax.swing.JFrame {
 
     /**
      * Creates new form MENU_ACTOR_MIEMBRO_OSS
      */
-    public MENU_INICIODESECION() {
+    public MENU_INICIODESESION() {
         initComponents();
     }
 
@@ -49,7 +49,7 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
 
         bttnIS.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         bttnIS.setForeground(new java.awt.Color(0, 0, 204));
-        bttnIS.setText("Iniciar secion");
+        bttnIS.setText("Iniciar Sesión");
         bttnIS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnISActionPerformed(evt);
@@ -58,17 +58,18 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 2, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel1.setText("Inicio de secion");
+        jLabel1.setText("Inicio de Sesión");
+        jLabel1.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jLabel2.setText("Ingrese el usuario");
+        jLabel2.setText("Ingrese su Usuario:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jLabel3.setText("Ingrese la contraseña");
+        jLabel3.setText("Ingrese su Contraseña:");
 
         bttnCreacionCuenta.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         bttnCreacionCuenta.setForeground(new java.awt.Color(0, 51, 204));
-        bttnCreacionCuenta.setText("Crear cuenta");
+        bttnCreacionCuenta.setText("Crear Cuenta");
         bttnCreacionCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnCreacionCuentaActionPerformed(evt);
@@ -83,7 +84,7 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
 
         bttnRecuperar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         bttnRecuperar.setForeground(new java.awt.Color(0, 0, 255));
-        bttnRecuperar.setText("Recuperar contraseña");
+        bttnRecuperar.setText("Recuperar Contraseña");
         bttnRecuperar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnRecuperarActionPerformed(evt);
@@ -110,29 +111,29 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(105, 105, 105)
-                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                            .addComponent(txtContraseña))
+                        .addGap(69, 69, 69)
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addComponent(bttnIS)
                         .addGap(40, 40, 40)
                         .addComponent(bttnRecuperar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(bttnCreacionCuenta)
                         .addGap(46, 46, 46))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(161, 161, 161))
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,21 +219,23 @@ public class MENU_INICIODESECION extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MENU_INICIODESECION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MENU_INICIODESESION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MENU_INICIODESECION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MENU_INICIODESESION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MENU_INICIODESECION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MENU_INICIODESESION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MENU_INICIODESECION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MENU_INICIODESESION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MENU_INICIODESECION().setVisible(true);
+                new MENU_INICIODESESION().setVisible(true);
             }
         });
     }

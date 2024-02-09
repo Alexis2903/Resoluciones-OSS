@@ -17,7 +17,7 @@ public class Main {
         MENU_ACTOR_D_G_C menu=new MENU_ACTOR_D_G_C();
         menu.setVisible(true);
         
-        MENU_INICIODESECION menuIS=new MENU_INICIODESECION();
+        MENU_INICIODESESION menuIS=new MENU_INICIODESESION();
         menuIS.setVisible(true);
     }
        
