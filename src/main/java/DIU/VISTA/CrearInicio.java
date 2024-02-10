@@ -218,7 +218,7 @@ public class CrearInicio extends javax.swing.JInternalFrame {
             break;
         case 3:
              adminControlador.insertarAdministrador(admin);
-            JOptionPane.showMessageDialog(this, "Cuenta de Cordinador creada con éxito");
+            JOptionPane.showMessageDialog(this, "Cuenta de Coordinador creada con éxito");
             
             break;
         case 4: 

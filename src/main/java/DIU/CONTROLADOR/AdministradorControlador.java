@@ -85,12 +85,12 @@ public void insertarAdministrador(Administrador admin) {
             // Ejecuta el stored procedure
             cs.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Cuenta de Administrador Creada con Éxito");
+            System.out.println("Cuenta creada "); 
         }
     } catch (SQLException e) {
         e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "ERROR SQL: " + e.getMessage());
-    }
+        System.out.println("Error al crear la cuenta"); 
+        }
 }
 
       public boolean autenticar(String usuario, String contrasena) {

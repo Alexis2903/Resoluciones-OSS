@@ -23,18 +23,6 @@ public class Administrador {
     public String getCedulaPersona() {
         return cedulaPersona;
     }
-    public Administrador(String cedulaPersona, String nombre_actor, String nombres, String apellidos, 
-            String telefono, String correo, String usuario, String contrasena, String carrera) {
-        this.cedulaPersona = cedulaPersona;
-        this.nombre_actor = nombre_actor;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.carrera = carrera;
-    }
 
     public void setCedulaPersona(String cedulaPersona) {
         this.cedulaPersona = cedulaPersona;
@@ -103,6 +91,21 @@ public class Administrador {
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
+
+   
+    public Administrador(String cedulaPersona, String nombre_actor, String nombres, String apellidos, String telefono, String correo, String usuario, String contrasena, String carrera) {
+        this.cedulaPersona = cedulaPersona;
+        this.nombre_actor = nombre_actor;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.carrera = carrera;
+    }
+
+  
 
     
     
