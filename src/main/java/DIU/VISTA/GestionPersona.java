@@ -331,7 +331,6 @@ public void setDatos() {
         if (cedulaExiste) {
             boolean actualizacionExitosa = pC.actualizarPersona(cedula, nuevosNombres, nuevosApellidos, nuevoTelefono, nuevoCorreo);
              JOptionPane.showMessageDialog(null, "Actualización exitosa");
-                // Limpiar la tabla y cargar las personas actualizadas
                 limpiarTabla();
                 cargarPersonas();
          

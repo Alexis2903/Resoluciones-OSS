@@ -58,7 +58,7 @@ public void insertarPersona(Persona p) {
             JOptionPane.showMessageDialog(null, "Revise los Datos ingresados");
         }
     } catch (SQLException e) {
-       JOptionPane.showMessageDialog( null, "ERROR SQL");
+       JOptionPane.showMessageDialog( null, "No se permiten letras en la cedula y el telefono");
 
     }
 }
@@ -147,11 +147,8 @@ public boolean actualizarPersona(String cedula, String nuevosNombres, String nue
         return filasActualizadas > 0; // Devuelve true si al menos una fila fue actualizada
     } catch (SQLException e) {
 
-        JOptionPane.showMessageDialog(null, "No se pudo actualizar la persona. Revise los datos ingresados.");
+        JOptionPane.showMessageDialog(null, "La cedula y telefono no debe contener Letras.");
         System.out.println("Error SQL: " + e.getMessage());
-
-
-        System.out.println("ERROR SQL: " + e.getMessage());
         e.printStackTrace();
     }
     return false;
@@ -178,8 +175,6 @@ public void eliminarPersona(String cedula) {
             String sql = "{CALL sp_EliminarPersona(?)}";
             ejecutar = (PreparedStatement) conectado.prepareCall(sql);
             ejecutar.setString(1, cedula);
-
-            // Ejecutar el stored procedure para eliminar la persona
             ejecutar.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Persona eliminada con éxito");
