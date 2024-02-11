@@ -37,9 +37,9 @@
                               <Component id="bttnGenerarpdf" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Component id="bttnabrir" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="bttnModificar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                              <Component id="BttnBuscar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                               <Component id="bttnlimpiar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -109,8 +109,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bttnGenerarpdf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bttnabrir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bttnModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bttnlimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BttnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -208,11 +208,6 @@
         <Property name="text" type="java.lang.String" value="LIMPIAR"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="bttnModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="MODIFICAR"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -235,5 +230,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="BttnBuscar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BUSCAR OFICIO"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BttnBuscarActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

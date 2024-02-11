@@ -41,9 +41,7 @@ public class Controlador_pedido {
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "Pedido insertado correctamente");
             ejecutar.close();
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo insertar el pedido. Verifique los datos.");
-        }
+        } 
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error al insertar el pedido: " + e.getMessage());
     }
@@ -78,6 +76,35 @@ public class Controlador_pedido {
 
         return listaPedidos;
     }
+public ArrayList<Object[]> buscarPedidoPorNumero(String numeroPedido) {
+    ArrayList<Object[]> listaPedidos = new ArrayList<>();
 
+    try {
+        // Llamar al procedimiento almacenado para buscar un pedido por número de pedido
+        String sql = "{CALL sp_BuscarPedidoPorNumero(?)}";
+        ejecutar = (PreparedStatement) conectado.prepareCall(sql);
+        ejecutar.setString(1, numeroPedido);
+        ResultSet resultado = ejecutar.executeQuery();
+
+        // Procesar los resultados y agregarlos a la lista
+        while (resultado.next()) {
+            Object[] datosPedido = new Object[5]; // Ajusta según la cantidad de columnas
+            datosPedido[0] = resultado.getString("NRO_PEDIDO");
+            datosPedido[1] = resultado.getInt("CEDULA_PERSONA");
+            datosPedido[2] = resultado.getString("ASUNTO");
+            datosPedido[3] = resultado.getDate("FECHAINGRESO_OFICIO");
+            datosPedido[4] = resultado.getString("ARCHIVOPDF");
+
+            listaPedidos.add(datosPedido);
+        }
+
+        ejecutar.close();
+    } catch (SQLException e) {
+        // Manejar la excepción según tus necesidades
+        e.printStackTrace();
+    }
+
+    return listaPedidos;
+}
 
 }

@@ -27,7 +27,7 @@ public class ServicioPedido {
         this.controladorPedido = new Controlador_pedido();
     }
 
-    public void generarYGuardarPedido(String numeroPedido, String cedula, String asunto, String fecha, String archivoPdf) {
+    public void generarYGuardarPedido(String numeroPedido, int cedula, String asunto, String fecha, String archivoPdf) {
         XWPFDocument document = new XWPFDocument();
 
         // Agregar contenido al documento Word (ejemplo)
@@ -78,7 +78,7 @@ public class ServicioPedido {
             out.close();
 
             // Llamada al controlador para insertar el pedido en la base de datos
-            controladorPedido.insertarPedido(numeroPedido, Integer.parseInt(cedula), asunto, fechaFormateada, fileName);
+            controladorPedido.insertarPedido(numeroPedido, cedula, asunto, fechaFormateada, fileName);
         } catch (IOException | NumberFormatException | ParseException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el documento Word o insertar el pedido.", "Error", JOptionPane.ERROR_MESSAGE);
