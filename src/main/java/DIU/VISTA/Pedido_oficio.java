@@ -7,7 +7,6 @@ package DIU.VISTA;
 import DIU.CONTROLADOR.Controlador_pedido;
 import DIU.MODELO.Pedido;
 import DIU.MODELO.ServicioPedido;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -263,7 +262,6 @@ public void setDatos() {
     private void bttnGenerarpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGenerarpdfActionPerformed
         try {
         ServicioPedido servicioPedido = new ServicioPedido();
-
         servicioPedido.generarYGuardarPedido(
             txtNumeroPedido.getText(),
                 Integer.parseInt(txtCedula.getText()),
@@ -271,15 +269,13 @@ public void setDatos() {
             txtFecha.getText(),
             txtArchivo.getText()
         );
-
         setDatos();
         cargarPedidos();
         tblPedidos.setModel(modelo);
-
-        JOptionPane.showMessageDialog(this, "Documento Word creado y pedido insertado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Documento Word creado y pedido insertado correctamente.");
     } catch (Exception e) {
         e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error al crear el documento Word o insertar el pedido.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Error Nº de pedido igual a uno existente", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_bttnGenerarpdfActionPerformed
 
@@ -333,9 +329,33 @@ public void setDatos() {
 
     private void bttneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttneliminarActionPerformed
         // TODO add your handling code here:
+    // TODO add your handling code here:
+    String numeroPedido = txtNumeroPedido.getText();
+
+    if (!numeroPedido.isEmpty()) {
+        // Llamar al controlador para eliminar el pedido y el documento
+        Controlador_pedido controladorPedido = new Controlador_pedido();
+        controladorPedido.eliminarPedido(numeroPedido);
+
+        // Limpiar los campos y recargar la tabla después de la eliminación
+        limpiarCampos();
+        cargarPedidos();
+        JOptionPane.showMessageDialog(this, "Pedido y documento eliminados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecciona un pedido antes de intentar eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }     
     }//GEN-LAST:event_bttneliminarActionPerformed
 
     
+    
+    private void limpiarCampos() {
+    txtNumeroPedido.setText("");
+    txtCedula.setText("");
+    txtAsunto.setText("");
+    txtFecha.setText("");
+    txtArchivo.setText("");
+}
+
 private void limpiarTabla() {
     int a = modelo.getRowCount() - 1;
     for (int i = a; i >= 0; i--) {
@@ -366,6 +386,7 @@ private void tblPedidosValueChanged(javax.swing.event.ListSelectionEvent evt) {
         txtArchivo.setText(tblPedidos.getValueAt(filaSeleccionada, 4).toString());
     }
 }
+ 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

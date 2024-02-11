@@ -219,3 +219,34 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_BuscarPedidoPorNumero(
+    IN p_numero_pedido VARCHAR(50)
+)
+BEGIN
+    -- Seleccionar datos del pedido por número
+    SELECT NRO_PEDIDO, CEDULA_PERSONA, ASUNTO, FECHAINGRESO_OFICIO, ARCHIVOPDF
+    FROM PEDIDO
+    WHERE NRO_PEDIDO = p_numero_pedido;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_EliminarPedido(
+    IN p_numero_pedido VARCHAR(50)
+)
+BEGIN
+    -- Eliminar el pedido de la base de datos
+    START TRANSACTION;
+    DELETE FROM PEDIDO WHERE NRO_PEDIDO = p_numero_pedido;
+    COMMIT;
+    
+    SELECT 'Pedido eliminado correctamente' AS Resultado;
+END //
+
+DELIMITER ;
+

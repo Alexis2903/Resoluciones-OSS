@@ -81,7 +81,7 @@ public class ServicioPedido {
             controladorPedido.insertarPedido(numeroPedido, cedula, asunto, fechaFormateada, fileName);
         } catch (IOException | NumberFormatException | ParseException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al crear el documento Word o insertar el pedido.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog( null,  "Error solo los estudiantes pueden realizar esta solicitud ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
