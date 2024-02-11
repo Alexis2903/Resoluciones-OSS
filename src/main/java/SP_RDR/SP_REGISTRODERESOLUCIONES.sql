@@ -179,3 +179,43 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_insertar_pedido(
+    IN p_nro_pedido VARCHAR(50),
+    IN p_cedula_persona INT,
+    IN p_asunto VARCHAR(45),
+    IN p_fecha_ingreso_oficio DATE,
+    IN p_archivo_pdf VARCHAR(100)
+)
+BEGIN
+    -- Verificar si la persona existe antes de insertar el pedido
+    DECLARE persona_existente INT;
+    SELECT COUNT(*) INTO persona_existente
+    FROM PERSONA
+    WHERE CEDULA_PERSONA = p_cedula_persona;
+
+    IF persona_existente > 0 THEN
+        -- Insertar el nuevo pedido
+        INSERT INTO PEDIDO (NRO_PEDIDO, CEDULA_PERSONA, ASUNTO, FECHAINGRESO_OFICIO, ARCHIVOPDF)
+        VALUES (p_nro_pedido, p_cedula_persona, p_asunto, p_fecha_ingreso_oficio, p_archivo_pdf);
+
+        SELECT 'Pedido insertado correctamente' AS Resultado;
+    ELSE
+        SELECT 'La persona no existe. No se pudo insertar el pedido.' AS Resultado;
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_datos_pedidos()
+BEGIN
+    -- Seleccionar datos de los pedidos
+    SELECT NRO_PEDIDO, CEDULA_PERSONA, ASUNTO, FECHAINGRESO_OFICIO, ARCHIVOPDF
+    FROM PEDIDO;
+END //
+
+DELIMITER ;

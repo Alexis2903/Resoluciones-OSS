@@ -4,9 +4,13 @@
  */
 package DIU.VISTA;
 
+import DIU.CONTROLADOR.Controlador_pedido;
+import DIU.MODELO.Pedido;
 import DIU.MODELO.ServicioPedido;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -18,12 +22,47 @@ import javax.swing.JOptionPane;
  */
 public class Pedido_oficio extends javax.swing.JInternalFrame {
 
+       ArrayList<Pedido> ListaPedidos = new ArrayList<>();
+      DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form Pedido_oficio
      */
     public Pedido_oficio() {
         initComponents();
+         setModelo();
     }
+    
+public void setModelo() {
+    String[] cabecera = {"Nº Pedido", "Cedula", "Asunto", "Fecha", "Descripcion del asunto"};
+    modelo.setColumnIdentifiers(cabecera);
+    tblPedidos.setModel(modelo);
+}
+
+
+public void setDatos() {
+    limpiarTabla(); 
+
+    for (int i = 0; i < ListaPedidos.size(); i++) {
+        Pedido puntero = ListaPedidos.get(i);
+        Object[] filas = new Object[6]; 
+        filas[0] = puntero.getNroPedido();
+        filas[1] = puntero.getCedulaPersona();
+        filas[2] = puntero.getAsunto();
+        filas[3] = puntero.getFechaIngresoOficio();
+        filas[4] = puntero.getArchivoPdf();
+        filas[5] = puntero.getArchivoPdf(); 
+
+        modelo.addRow(filas);
+    }
+
+    txtNumeroPedido.setText("");
+    txtCedula.setText("");
+    txtAsunto.setText("");
+    txtFecha.setText("");
+    txtArchivo.setText("");
+}
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +81,6 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        bttnGenerarOficio = new javax.swing.JButton();
         txtNumeroPedido = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
         txtAsunto = new javax.swing.JTextField();
@@ -50,11 +88,31 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
         bttnGenerarpdf = new javax.swing.JButton();
         bttnabrir = new javax.swing.JButton();
         bttnlimpiar = new javax.swing.JButton();
+        bttnModificar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPedidos = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jCalendar1.setBackground(new java.awt.Color(51, 51, 255));
         jCalendar1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 255, 0)));
@@ -77,13 +135,6 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Ingrese una descripcion de lo que desea solicitar");
 
-        bttnGenerarOficio.setText("SALIR");
-        bttnGenerarOficio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnGenerarOficioActionPerformed(evt);
-            }
-        });
-
         bttnGenerarpdf.setText("GENERAR PDF ");
         bttnGenerarpdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +143,28 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
         });
 
         bttnabrir.setText("ABRIR PDF ");
+        bttnabrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnabrirActionPerformed(evt);
+            }
+        });
 
         bttnlimpiar.setText("LIMPIAR");
+
+        bttnModificar.setText("MODIFICAR");
+
+        tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane1.setViewportView(tblPedidos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,74 +173,77 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(358, 358, 358)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6))
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bttnGenerarpdf)
+                                .addGap(39, 39, 39)
+                                .addComponent(bttnabrir)
+                                .addGap(44, 44, 44)
+                                .addComponent(bttnModificar)
+                                .addGap(59, 59, 59)
+                                .addComponent(bttnlimpiar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(64, 64, 64)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(bttnGenerarOficio)
-                        .addGap(74, 74, 74)
-                        .addComponent(bttnGenerarpdf)
-                        .addGap(155, 155, 155)
-                        .addComponent(bttnabrir)
-                        .addGap(89, 89, 89)
-                        .addComponent(bttnlimpiar)))
-                .addGap(37, 37, 37))
+                        .addGap(247, 247, 247)
+                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttnGenerarOficio)
                     .addComponent(bttnGenerarpdf)
                     .addComponent(bttnabrir)
+                    .addComponent(bttnModificar)
                     .addComponent(bttnlimpiar))
-                .addGap(16, 16, 16))
+                .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -184,13 +258,8 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jCalendar1PropertyChange
 
-    private void bttnGenerarOficioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGenerarOficioActionPerformed
-        // TODO add your handling code here:
-    System.exit(0);  
-    }//GEN-LAST:event_bttnGenerarOficioActionPerformed
-
     private void bttnGenerarpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGenerarpdfActionPerformed
-     try {
+        try {
         ServicioPedido servicioPedido = new ServicioPedido();
 
         servicioPedido.generarYGuardarPedido(
@@ -198,8 +267,12 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
             txtCedula.getText(),
             txtAsunto.getText(),
             txtFecha.getText(),
-            txtArchivo.getText()// <-- Aquí se toma la fecha directamente del campo de texto
+            txtArchivo.getText()
         );
+
+        setDatos();
+        cargarPedidos();
+        tblPedidos.setModel(modelo);
 
         JOptionPane.showMessageDialog(this, "Documento Word creado y pedido insertado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     } catch (Exception e) {
@@ -208,11 +281,43 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
     }
     }//GEN-LAST:event_bttnGenerarpdfActionPerformed
 
+    private void bttnabrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnabrirActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bttnabrirActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+        limpiarTabla();
+     cargarPedidos();   
+    }//GEN-LAST:event_formInternalFrameActivated
+
     
+private void limpiarTabla() {
+    int a = modelo.getRowCount() - 1;
+    for (int i = a; i >= 0; i--) {
+        modelo.removeRow(i);
+    }
+}
+
+private void cargarPedidos() {
+   
+    Controlador_pedido controladorPedido = new Controlador_pedido();
+    ArrayList<Object[]> listaFilas = controladorPedido.obtenerDatosPedidos();
+    limpiarTabla();
+
+    for (Object[] listaFila : listaFilas) {
+        modelo.addRow(listaFila);
+    }
+   
+    tblPedidos.setModel(modelo);
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttnGenerarOficio;
     private javax.swing.JButton bttnGenerarpdf;
+    private javax.swing.JButton bttnModificar;
     private javax.swing.JButton bttnabrir;
     private javax.swing.JButton bttnlimpiar;
     private com.toedter.calendar.JCalendar jCalendar1;
@@ -222,6 +327,8 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblPedidos;
     private javax.swing.JTextField txtArchivo;
     private javax.swing.JTextField txtAsunto;
     private javax.swing.JTextField txtCedula;
