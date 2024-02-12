@@ -52,7 +52,7 @@ public class Servicio_Pedido_DGC {
         // Agregar contenido al documento Word (ejemplo) 
         XWPFParagraph paragraph = document.createParagraph();
         XWPFRun run = paragraph.createRun();
-        run.setText("OFICIO ESTUDIANTE IST 17 DE JULIO");
+        run.setText("OFICIO COORDINADOR-DOCENTE-GERENTE IST 17 DE JULIO");
         run.setBold(true);
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak(); 
