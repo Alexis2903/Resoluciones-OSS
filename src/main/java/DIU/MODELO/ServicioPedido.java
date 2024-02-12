@@ -43,7 +43,7 @@ public class ServicioPedido {
         
         // Agregar la imagen al párrafo vacío 
         XWPFRun imageRun = emptyParagraph.createRun();
-        FileInputStream imageStream = new FileInputStream("C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\resources\\logo-instituto.png");
+        FileInputStream imageStream = new FileInputStream("C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\resources\\logo-instituto.png");
         imageRun.addPicture(imageStream, XWPFDocument.PICTURE_TYPE_PNG, "logo-instituto", Units.toEMU(100), Units.toEMU(100));
         imageStream.close();
         // Alinear el párrafo a la derecha
@@ -96,20 +96,22 @@ public class ServicioPedido {
         run2.setBold(true);
         paragraph.createRun().addBreak(); 
 
-       try {
+         try {
     // Parsear la fecha con el formato correcto
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     Date fechaFormateada = new Date(dateFormat.parse(fecha).getTime());
 
-    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\Oficio_Estudiantes\\";
+    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
 
     // Guardar el documento Word
-    String fileName = "OficioEstudiante_" + numeroPedido + ".docx";
+    String fileName = "OficioDGC_" + numeroPedido + ".docx";
     String rutaCompleta = rutaGuardar + fileName;
 
-    FileOutputStream out = new FileOutputStream(rutaCompleta);
-    document.write(out);
-    out.close();
+    // Guardar el documento Word
+    try (FileOutputStream out = new FileOutputStream(rutaCompleta)) {
+        document.write(out);
+        System.out.println("Archivo Word guardado en: " + rutaCompleta); // Agregar este mensaje
+    }
 
     // Obtener solo el nombre del archivo de la ruta completa
     File archivo = new File(rutaCompleta);
@@ -117,9 +119,12 @@ public class ServicioPedido {
 
     // Llamada al controlador para insertar el pedido en la base de datos
     controladorPedido.insertarPedido(numeroPedido, cedula, asunto, fechaFormateada, nombreArchivo);
+
+    // Agregar un mensaje después de la inserción en la base de datos
+    System.out.println("Pedido insertado en la base de datos con éxito.");
 } catch (IOException | NumberFormatException | ParseException e) {
     JOptionPane.showMessageDialog(null, "Error al procesar la fecha", "ERROR", JOptionPane.ERROR_MESSAGE);
 }
-
     }
+
 }

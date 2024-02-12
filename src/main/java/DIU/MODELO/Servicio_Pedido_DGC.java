@@ -43,7 +43,7 @@ public class Servicio_Pedido_DGC {
         
         // Agregar la imagen al párrafo vacío 
         XWPFRun imageRun = emptyParagraph.createRun();
-        FileInputStream imageStream = new FileInputStream("C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\resources\\logo-instituto.png");
+        FileInputStream imageStream = new FileInputStream("C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\resources\\logo-instituto.png");
         imageRun.addPicture(imageStream, XWPFDocument.PICTURE_TYPE_PNG, "logo-instituto", Units.toEMU(100), Units.toEMU(100));
         imageStream.close();
         // Alinear el párrafo a la derecha
@@ -104,7 +104,7 @@ public class Servicio_Pedido_DGC {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     Date fechaFormateada = new Date(dateFormat.parse(fecha).getTime());
 
-    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\Oficio_DGC\\";
+    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
 
     // Guardar el documento Word
     String fileName = "OficioDGC_" + numeroPedido + ".docx";

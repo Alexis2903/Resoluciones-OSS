@@ -287,7 +287,7 @@ public void setDatos() {
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblPedidos.getValueAt(filaSeleccionada, 4).toString();
-        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\Oficio_Estudiantes\\";
+        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
 
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;
 
@@ -340,7 +340,7 @@ public void setDatos() {
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblPedidos.getValueAt(filaSeleccionada, 4).toString();
-        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\Oficio_Estudiantes\\";
+        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;
 
         // Aquí obtenemos la ruta completa del archivo que deseamos eliminar
