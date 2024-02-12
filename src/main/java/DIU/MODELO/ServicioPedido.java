@@ -104,7 +104,7 @@ public class ServicioPedido {
     String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
 
     // Guardar el documento Word
-    String fileName = "OficioDGC_" + numeroPedido + ".docx";
+    String fileName = "OficioEstudiante_" + numeroPedido + ".docx";
     String rutaCompleta = rutaGuardar + fileName;
 
     // Guardar el documento Word
