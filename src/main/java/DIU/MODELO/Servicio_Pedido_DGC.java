@@ -4,13 +4,12 @@
  */
 package DIU.MODELO;
 
-import DIU.CONTROLADOR.Controlador_pedido;
+import DIU.CONTROLADOR.Controlador_pedido_DCG;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,22 +21,23 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
-
-
 /**
  *
  * @author jefe
  */
-public class ServicioPedido {
- private Controlador_pedido controladorPedido;
+public class Servicio_Pedido_DGC {
 
-    public ServicioPedido() {
-        this.controladorPedido = new Controlador_pedido();
+     private Controlador_pedido_DCG controladorPedido;
+
+    
+     public Servicio_Pedido_DGC() {
+        this.controladorPedido = new Controlador_pedido_DCG();
     }
 
-    public void generarYGuardarPedido(String numeroPedido, int cedula, String asunto, String fecha, String archivoPdf) throws FileNotFoundException, IOException, InvalidFormatException {
-         
-        XWPFDocument document = new XWPFDocument();
+
+    public void generarYGuardarPedido(String numeroPedido, int cedula, String asunto, String fecha, String archivoPdf) throws FileNotFoundException, InvalidFormatException, IOException {
+       
+         XWPFDocument document = new XWPFDocument();
         //Agregar un párrafo vacío al principio del documento
         XWPFParagraph emptyParagraph = document.createParagraph();
         
@@ -62,7 +62,7 @@ public class ServicioPedido {
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();
         paragraph.createRun().addBreak();
-        paragraph.createRun().setText("El/La estudiante con el número de Cedula: " + cedula);
+        paragraph.createRun().setText("Me dirijo como gestor/coordinador/docente con el número de Cedula: " + cedula);
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();
         paragraph.createRun().setText("Solicita el día de hoy: " + fecha);
@@ -96,20 +96,25 @@ public class ServicioPedido {
         run2.setBold(true);
         paragraph.createRun().addBreak(); 
 
-       try {
+       
+        // ...
+
+      try {
     // Parsear la fecha con el formato correcto
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     Date fechaFormateada = new Date(dateFormat.parse(fecha).getTime());
 
-    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\Oficio_Estudiantes\\";
+    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\Oficio_DGC\\";
 
     // Guardar el documento Word
-    String fileName = "OficioEstudiante_" + numeroPedido + ".docx";
+    String fileName = "OficioDGC_" + numeroPedido + ".docx";
     String rutaCompleta = rutaGuardar + fileName;
 
-    FileOutputStream out = new FileOutputStream(rutaCompleta);
-    document.write(out);
-    out.close();
+    // Guardar el documento Word
+    try (FileOutputStream out = new FileOutputStream(rutaCompleta)) {
+        document.write(out);
+        System.out.println("Archivo Word guardado en: " + rutaCompleta); // Agregar este mensaje
+    }
 
     // Obtener solo el nombre del archivo de la ruta completa
     File archivo = new File(rutaCompleta);
@@ -117,9 +122,12 @@ public class ServicioPedido {
 
     // Llamada al controlador para insertar el pedido en la base de datos
     controladorPedido.insertarPedido(numeroPedido, cedula, asunto, fechaFormateada, nombreArchivo);
+
+    // Agregar un mensaje después de la inserción en la base de datos
+    System.out.println("Pedido insertado en la base de datos con éxito.");
 } catch (IOException | NumberFormatException | ParseException e) {
     JOptionPane.showMessageDialog(null, "Error al procesar la fecha", "ERROR", JOptionPane.ERROR_MESSAGE);
 }
-
     }
+
 }

@@ -17,20 +17,24 @@ import javax.swing.JOptionPane;
  *
  * @author jefe
  */
-public class Controlador_pedido {
+public class Controlador_pedido_DCG {
     
      ConexionBDD conectar = new ConexionBDD();
     Connection conectado = (Connection) conectar.conectar();
     PreparedStatement ejecutar;
 
-    public Controlador_pedido() {
+    public Controlador_pedido_DCG() {
     }
+    
+    
     
     public void insertarPedido(String nroPedido, int cedulaPersona, String asunto, Date fechaIngresoOficio, String archivoPdf) {
      try {
+         
+        
         // Check if the person has a valid ID_ACTOR
-        if (personaHasValidActor(cedulaPersona)) {
-            JOptionPane.showMessageDialog(null, "La persona tiene un ID_ACTOR válido. No puede realizar el oficio.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (!personaValidActor(cedulaPersona)) {
+            JOptionPane.showMessageDialog(null, "La persona no tiene un ID_ACTOR válido. No se puede realizar el oficio.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
             // Llamar al procedimiento almacenado para insertar un pedido
@@ -138,12 +142,12 @@ public String obtenerArchivoPedido(String numeroPedido) {
 
 public void eliminarPedido(String numeroPedido) {
     try {
-        // Obtener la ruta del archivo asociado al pedido
-        String rutaArchivo = obtenerArchivoPedido(numeroPedido);
+        // Llamar al procedimiento almacenado para obtener la ruta del archivo asociado al pedido
+        String archivoWord = obtenerArchivoPedido(numeroPedido);
 
-        if (rutaArchivo != null && !rutaArchivo.isEmpty()) {
+        if (archivoWord != null) {
             // Crear el objeto File con la ruta del archivo
-            File file = new File(rutaArchivo);
+            File file = new File(archivoWord);
 
             // Verificar si el archivo existe y eliminarlo
             if (file.exists()) {
@@ -169,7 +173,7 @@ public void eliminarPedido(String numeroPedido) {
     }
 }
 
-private boolean personaHasValidActor(int cedulaPersona) {
+private boolean personaValidActor(int cedulaPersona) {
     try {
         String sql = "SELECT ID_ACTOR FROM PERSONA WHERE CEDULA_PERSONA = ?";
         try (PreparedStatement statement = conectado.prepareStatement(sql)) {
