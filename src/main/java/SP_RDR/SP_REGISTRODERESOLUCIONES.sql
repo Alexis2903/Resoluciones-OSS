@@ -250,3 +250,40 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE sp_RegistrarResolucion(
+    IN p_numero_pedido VARCHAR(50),
+    IN p_fecha_resolucion DATE,
+    IN p_estado_aprobado_no_aprobado VARCHAR(45),
+    IN p_descargar_pdf_aprobado VARCHAR(100)
+)
+BEGIN
+    DECLARE v_nombre_pdf VARCHAR(100);
+
+    -- Obtener el nombre del PDF de la tabla PEDIDO
+    SELECT ARCHIVOPDF INTO v_nombre_pdf FROM PEDIDO WHERE NRO_PEDIDO = p_numero_pedido;
+
+    -- Insertar la nueva resolución
+    INSERT INTO Resolucion (NRO_PEDIDO, FECHA_RESOLUCION, ESTADO_APROBADO_NO_APROBADO, DESCARGAR_PDF_APROBADO)
+    VALUES (p_numero_pedido, p_fecha_resolucion, p_estado_aprobado_no_aprobado, v_nombre_pdf);
+
+    SELECT 'Resolución registrada correctamente' AS Resultado;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_BuscarPedidoPorNumeroPedido(
+    IN p_numero_pedido VARCHAR(50)
+)
+BEGIN
+    -- Seleccionar nombre del pedido y archivo PDF por número
+    SELECT NRO_PEDIDO, ARCHIVOPDF
+    FROM PEDIDO
+    WHERE NRO_PEDIDO = p_numero_pedido;
+END //
+
+DELIMITER ;
+
