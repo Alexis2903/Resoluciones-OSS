@@ -287,3 +287,62 @@ END //
 
 DELIMITER ;
 
+SELECT * FROM resoluciones_oss.resolucion;
+
+ALTER TABLE resoluciones_oss.resolucion AUTO_INCREMENT = 1;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_InsertarActaReunion(
+    IN p_ID_RESOLUCION INT,
+    IN p_FECHAYHORA DATETIME,
+    IN p_TIPO_ORDINARIA_EXTRAORDINARIA VARCHAR(45),
+    IN p_OBSERVACIONES VARCHAR(1000)
+)
+BEGIN
+    DECLARE v_EXISTE_RESOLUCION INT;
+
+    -- Verificar si la resolución existe
+    SELECT COUNT(*) INTO v_EXISTE_RESOLUCION
+    FROM RESOLUCION
+    WHERE ID_RESOLUCION = p_ID_RESOLUCION;
+
+    -- Si la resolución no existe, mostrar un mensaje de error
+    IF v_EXISTE_RESOLUCION = 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La resolución especificada no existe';
+    END IF;
+
+    -- Insertar el acta de reunión
+    INSERT INTO ACTA_DE_REUNION (
+        ID_RESOLUCION,
+        FECHAYHORA,
+        TIPO_ORDINARIA_EXTRAORDINARIA,
+        OBSERVACIONES
+    ) VALUES (
+        p_ID_RESOLUCION,
+        p_FECHAYHORA,
+        p_TIPO_ORDINARIA_EXTRAORDINARIA,
+        p_OBSERVACIONES
+    );
+
+    SELECT 'Acta de reunión insertada correctamente' AS Resultado;
+END //
+
+DELIMITER ;
+
+SELECT * FROM resoluciones_oss.acta_de_reunion;
+ALTER TABLE resoluciones_oss.acta_de_reunion AUTO_INCREMENT = 1;
+
+
+DELIMITER //
+
+CREATE PROCEDURE sp_VisualizarResolucionesAprobadas()
+BEGIN
+    -- Seleccionar resoluciones aprobadas
+    SELECT ID_RESOLUCION, DESCARGAR_PDF_APROBADO
+    FROM Resolucion
+    WHERE ESTADO_APROBADO_NO_APROBADO = 'Aprobado';
+END //
+
+DELIMITER ;

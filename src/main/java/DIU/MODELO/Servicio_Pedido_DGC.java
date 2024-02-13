@@ -65,7 +65,8 @@ public class Servicio_Pedido_DGC {
         paragraph.createRun().setText("Me dirijo como gestor/coordinador/docente con el número de Cedula: " + cedula);
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();
-        paragraph.createRun().setText("Solicita el día de hoy: " + fecha);
+        paragraph.createRun().setText("Solicito el día de hoy: " + fecha);
+        paragraph.createRun().addBreak();
         paragraph.createRun().setText("Realizar una solicitud debido al asunto de: " + asunto);
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();

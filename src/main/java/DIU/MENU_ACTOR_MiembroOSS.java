@@ -5,6 +5,7 @@
 package DIU;
 
 import DIU.VISTA.Aceptar_pedidos;
+import DIU.VISTA.Acta_Reunion;
 
 /**
  *
@@ -94,6 +95,9 @@ public class MENU_ACTOR_MiembroOSS extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        Acta_Reunion AR=new Acta_Reunion();
+        escritorio.add(AR);
+        AR.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**

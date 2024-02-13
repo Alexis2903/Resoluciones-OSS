@@ -15,6 +15,7 @@ public class Resolucion {
     private String estadoAprobadoNoAprobado;
     private String descargarPdfAprobado;
 
+    
     public int getIdResolucion() {
         return idResolucion;
     }

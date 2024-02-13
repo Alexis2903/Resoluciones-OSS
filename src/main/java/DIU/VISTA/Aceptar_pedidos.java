@@ -7,7 +7,6 @@ package DIU.VISTA;
 import DIU.CONTROLADOR.Controlador_resoluciones;
 import DIU.MODELO.Resolucion;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -34,10 +33,6 @@ public class Aceptar_pedidos extends javax.swing.JInternalFrame {
         }
     });
     }
-
-     
-    
-
 
 public void setModelo() {
         String[] cabecera = {"Nº","Nº Pedido", "Fecha Resolucion", "Estado", "Guardar PDF"};
@@ -148,7 +143,7 @@ public void setModelo() {
             }
         });
 
-        BtnnBuscar.setText("BUSCAR RESOLUCION");
+        BtnnBuscar.setText("BUSCAR SOLICITUD");
         BtnnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnnBuscarActionPerformed(evt);
@@ -160,87 +155,91 @@ public void setModelo() {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addContainerGap()
+                        .addComponent(PDFDOC)
+                        .addGap(148, 148, 148)
+                        .addComponent(bttnRegistrarResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(139, 139, 139)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(ABRIR)))
+                        .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bNoAprobado)
+                            .addComponent(BtnnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bAprobado)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                 .addComponent(txtPedido, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PDFDOC)
-                            .addComponent(ABRIR))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bttnRegistrarResolucion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
-                .addGap(47, 47, 47)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(bNoAprobado))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(bAprobado)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addComponent(bNoAprobado)
-                        .addGap(39, 39, 39)
-                        .addComponent(txtGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ABRIR)
-                    .addComponent(BtnnBuscar))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PDFDOC)
-                    .addComponent(bttnRegistrarResolucion))
-                .addGap(18, 18, 18))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(bAprobado)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(bNoAprobado)))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ABRIR)
+                            .addComponent(BtnnBuscar))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PDFDOC)
+                            .addComponent(bttnRegistrarResolucion)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(184, 184, 184))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-       
+    
  public void setDatos() {
     limpiarTabla();
     int cont = 1;
@@ -262,9 +261,8 @@ public void setModelo() {
     txtGuardar.setText("");
     bAprobado.setSelected(false); // Desmarcar el radio button Aprobado
     bNoAprobado.setSelected(false); // Desmarcar el radio button No Aprobado
+   
 }
-
-        
     private void bNoAprobadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNoAprobadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bNoAprobadoActionPerformed
@@ -275,7 +273,7 @@ public void setModelo() {
         // Obtener datos de los componentes de la interfaz
         String numeroPedido = txtPedido.getText();
         Date fechaResolucion = Date.valueOf(txtFecha.getText());
-        String estadoAprobadoNoAprobado = bAprobado.isSelected() ? "APROBADO" : "NO APROBADO";
+        String estadoAprobadoNoAprobado = bAprobado.isSelected() ? "APROBADO" : "NO APROBADO";        
         String descargarPdfAprobado = txtGuardar.getText();
         Controlador_resoluciones controladorResoluciones = new Controlador_resoluciones();
         controladorResoluciones.registrarResolucion(numeroPedido, fechaResolucion, estadoAprobadoNoAprobado, descargarPdfAprobado);
@@ -296,8 +294,8 @@ public void setModelo() {
     }//GEN-LAST:event_jCalendar1PropertyChange
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-  cargarDatos();
-    setDatos();
+        cargarDatos(); // Carga datos solo si la lista está vacía
+        setDatos();    
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void ABRIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ABRIRActionPerformed
@@ -349,21 +347,14 @@ public void setModelo() {
     private void BtnnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnnBuscarActionPerformed
         // TODO add your handling code here:
       try {
-        // Obtener el número de pedido de la interfaz
         String numeroPedido = txtPedido.getText();
-
-        // Realizar la búsqueda en la base de datos
         Controlador_resoluciones controladorResoluciones = new Controlador_resoluciones();
         listaResoluciones = controladorResoluciones.obtenerResolucionesPorNumeroPedido(numeroPedido);
-
-        // Llenar la tabla con los resultados de la búsqueda
         setDatos();
-
     } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error al buscar el pedido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_BtnnBuscarActionPerformed
+    
     
     private void limpiarTabla() {
         int a = modelo.getRowCount() - 1;
@@ -376,8 +367,6 @@ public void setModelo() {
     try {
         Controlador_resoluciones controladorResoluciones = new Controlador_resoluciones();
         listaResoluciones = controladorResoluciones.obtenerResolucionesDesdeBaseDeDatos();
-
-        // Actualizar la tabla con los nuevos datos
         setDatos();
     } catch (Exception e) {
         e.printStackTrace();

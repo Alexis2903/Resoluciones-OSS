@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,9 +28,14 @@ public class Controlador_resoluciones {
 
     public Controlador_resoluciones() {
     }
-
-        public void registrarResolucion(String NRO_PEDIDO, Date fechaResolucion, String estadoAprobadoNoAprobado, String descargarPdfAprobado) {
+ public void registrarResolucion(String NRO_PEDIDO, Date fechaResolucion, String estadoAprobadoNoAprobado, String descargarPdfAprobado) {
         try {
+            // Verificar si ya existe una resolución con el mismo número de pedido
+            if (existeResolucion(NRO_PEDIDO)) {
+                JOptionPane.showMessageDialog(null, "YA EXISTE UNA RESOLUCION CON EL Nº DEL PEDIDO: " + NRO_PEDIDO);
+                return;
+            }
+
             // Llamar al procedimiento almacenado para registrar una resolución
             String sql = "{CALL sp_RegistrarResolucion(?, ?, ?, ?)}";
             ejecutar = conectado.prepareCall(sql);
@@ -41,11 +47,11 @@ public class Controlador_resoluciones {
             // Ejecutar el procedimiento almacenado
             ejecutar.execute();
             System.out.println("Resolución registrada correctamente.");
-
             ejecutar.close();
         } catch (SQLException e) {
             // Manejar la excepción según tus necesidades
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al registrar la resolución: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -79,6 +85,10 @@ public class Controlador_resoluciones {
 
         return resoluciones;
     }
+     
+     
+     
+     
      public ArrayList<Resolucion> obtenerResolucionesPorNumeroPedido(String numeroPedido) {
     ArrayList<Resolucion> resoluciones = new ArrayList<>();
 
@@ -107,7 +117,33 @@ public class Controlador_resoluciones {
 
     return resoluciones;
 }
+     
+     
+   private boolean existeResolucion(String numeroPedido) {
+    try {
+        // Verificar si ya existe una resolución con el mismo número de pedido en la base de datos
+        String sql = "SELECT COUNT(*) FROM Resolucion WHERE NRO_PEDIDO = ?";
+        PreparedStatement preparedStatement = conectado.prepareStatement(sql);
+        preparedStatement.setString(1, numeroPedido);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            int count = resultSet.getInt(1);
+            return count > 0; // Retorna true si ya existe al menos una resolución con el mismo número de pedido
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+    } catch (SQLException e) {
+        // Manejar la excepción según tus necesidades
+        e.printStackTrace();
+    }
+
+    return false;
+}  
+     
 }
+
      
     
 
