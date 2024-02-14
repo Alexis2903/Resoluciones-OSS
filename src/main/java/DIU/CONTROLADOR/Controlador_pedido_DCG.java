@@ -34,7 +34,7 @@ public class Controlador_pedido_DCG {
         
         // Check if the person has a valid ID_ACTOR
         if (!personaValidActor(cedulaPersona)) {
-            JOptionPane.showMessageDialog(null, "La persona no tiene un ID_ACTOR válido. No se puede realizar el oficio.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La persona no tiene un Actor. No puede realizar este oficio.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
             // Llamar al procedimiento almacenado para insertar un pedido

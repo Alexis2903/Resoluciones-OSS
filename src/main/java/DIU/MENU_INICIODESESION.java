@@ -8,6 +8,9 @@ import DIU.CONTROLADOR.AdministradorControlador;
 import DIU.MODELO.Administrador_IS;
 import DIU.VISTA.CrearInicio;
 import DIU.VISTA.Recuperar_contraseña;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +24,7 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
      */
     public MENU_INICIODESESION() {
         initComponents();
+
     }
 
     
@@ -33,7 +37,15 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/FONDOIST.JPG"));
+        Image image = icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         bttnIS = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,6 +54,8 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
         bttnRecuperar = new javax.swing.JButton();
+        jlabelFondo = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +105,8 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS1.png"))); // NOI18N
+
         escritorio.setLayer(bttnIS, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -99,65 +115,77 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
         escritorio.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(txtContraseña, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(bttnRecuperar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jlabelFondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(51, 51, 51)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(69, 69, 69)
-                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(bttnIS)
-                        .addGap(40, 40, 40)
+                        .addGap(32, 32, 32)
                         .addComponent(bttnRecuperar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(bttnCreacionCuenta)
-                        .addGap(46, 46, 46))))
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(bttnCreacionCuenta))
+                    .addGroup(escritorioLayout.createSequentialGroup()
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(78, 78, 78)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(escritorioLayout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(53, 53, 53)
+                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(escritorioLayout.createSequentialGroup()
+                                    .addComponent(jlabelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(57, 57, 57)
+                                    .addComponent(jLabel1))
+                                .addGroup(escritorioLayout.createSequentialGroup()
+                                    .addGap(142, 142, 142)
+                                    .addComponent(jLabel7))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(36, 36, 36))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlabelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
+                .addGap(73, 73, 73)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttnIS)
                     .addComponent(bttnRecuperar)
                     .addComponent(bttnCreacionCuenta))
-                .addGap(61, 61, 61))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -272,7 +300,11 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jlabelFondo;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }
+

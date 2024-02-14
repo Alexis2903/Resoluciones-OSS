@@ -294,6 +294,7 @@ public void setDatos() {
 
     private void bttnGenerarpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGenerarpdfActionPerformed
         try {
+            
             Servicio_Pedido_DGC servicioPedido = new Servicio_Pedido_DGC();
             servicioPedido.generarYGuardarPedido(
                 txtNumeroPedido.getText(),
@@ -302,6 +303,8 @@ public void setDatos() {
                 txtFecha.getText(),
                 txtArchivo.getText()
             );
+            
+            
             setDatos();
             cargarPedidos();
             tblPedidos.setModel(modelo);
