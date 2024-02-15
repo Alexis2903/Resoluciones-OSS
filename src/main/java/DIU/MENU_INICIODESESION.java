@@ -130,7 +130,7 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
                         .addComponent(bttnIS)
                         .addGap(32, 32, 32)
                         .addComponent(bttnRecuperar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                         .addComponent(bttnCreacionCuenta))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -181,7 +181,7 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,9 +193,9 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
 
     private void bttnCreacionCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCreacionCuentaActionPerformed
         // TODO add your handling code here:
-    CrearInicio crearInicio = new CrearInicio();
-    escritorio.add(crearInicio);
-    crearInicio.setVisible(true);
+   CrearInicio CI= new CrearInicio();
+   escritorio.add(CI);
+   CI.show();
     }//GEN-LAST:event_bttnCreacionCuentaActionPerformed
 
     private void bttnISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnISActionPerformed
