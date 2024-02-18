@@ -33,7 +33,7 @@ public class MENU_ACTOR_Gestor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/LOGO.JPG"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/FONDOIST.JPG"));
         Image image = icon.getImage();
         escritorio = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
