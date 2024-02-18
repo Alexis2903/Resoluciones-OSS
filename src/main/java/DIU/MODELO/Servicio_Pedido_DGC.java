@@ -105,7 +105,11 @@ public class Servicio_Pedido_DGC {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     Date fechaFormateada = new Date(dateFormat.parse(fecha).getTime());
 
-    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+    //SARA
+        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+
+    //ALEXIS
+    //String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
 
     // Guardar el documento Word
     String fileName = "OficioDGC_" + numeroPedido + ".docx";
