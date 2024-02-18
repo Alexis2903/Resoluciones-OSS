@@ -304,7 +304,11 @@ public void setModelo() {
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblRes.getValueAt(filaSeleccionada, 4).toString();
-        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
+        //SARA
+        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
+
+        //ALEXIS
+       // String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;
 
         try {
@@ -325,7 +329,11 @@ public void setModelo() {
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblRes.getValueAt(filaSeleccionada, 4).toString();
-        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+        //SARA
+        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+
+        //ALEXIS
+        //String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
         
         
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;

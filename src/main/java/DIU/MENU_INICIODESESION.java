@@ -168,11 +168,16 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
                         .addComponent(bttnIS)
                         .addGap(32, 32, 32)
                         .addComponent(bttnRecuperar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addGap(47, 47, 47)
                         .addComponent(bttnCreacionCuenta))
-                    .addGroup(escritorioLayout.createSequentialGroup()
-                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(escritorioLayout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(78, 78, 78)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(escritorioLayout.createSequentialGroup()
+<<<<<<< HEAD
                                 .addComponent(jLabel2)
                                 .addGap(78, 78, 78)
                                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,6 +207,19 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addContainerGap())
 >>>>>>> 37651136fc01040d6d254043e4a4141410ce066b
+=======
+                                .addComponent(jLabel3)
+                                .addGap(53, 53, 53)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addComponent(jlabelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel1))
+                            .addGroup(escritorioLayout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(jLabel7)))))
+                .addGap(36, 86, Short.MAX_VALUE))
+>>>>>>> dfbd538430abf2fa57dbe7529b197bb86fe6b26f
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
