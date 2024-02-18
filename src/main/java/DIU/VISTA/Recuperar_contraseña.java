@@ -19,6 +19,8 @@ public class Recuperar_contraseña extends javax.swing.JInternalFrame {
      */
     public Recuperar_contraseña() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(64, 224, 208)); 
+
     }
 
     /**

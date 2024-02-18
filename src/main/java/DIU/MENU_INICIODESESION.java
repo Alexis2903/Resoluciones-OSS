@@ -227,6 +227,7 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
     CrearInicio crearInicio = new CrearInicio();
     escritorio.add(crearInicio);
     crearInicio.setVisible(true);
+    crearInicio.pack();
     }//GEN-LAST:event_bttnCreacionCuentaActionPerformed
 
     private void bttnISActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnISActionPerformed
@@ -283,6 +284,7 @@ public class MENU_INICIODESESION extends javax.swing.JFrame {
     Recuperar_contraseña addrec = new Recuperar_contraseña();
     escritorio.add(addrec);
     addrec.setVisible(true);
+    addrec.pack();
     }//GEN-LAST:event_bttnRecuperarActionPerformed
 
     /**

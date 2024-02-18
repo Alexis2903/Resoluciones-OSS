@@ -6,8 +6,6 @@ package DIU.VISTA;
 
 import DIU.CONTROLADOR.AdministradorControlador;
 import DIU.MODELO.Administrador;
-import java.sql.CallableStatement;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +19,8 @@ public class CrearInicio extends javax.swing.JInternalFrame {
      */
     public CrearInicio() {
         initComponents();
+         getContentPane().setBackground(new java.awt.Color(64, 224, 208)); 
+   
     }
 
     /**
@@ -48,12 +48,14 @@ public class CrearInicio extends javax.swing.JInternalFrame {
         txtTel = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtUsu = new javax.swing.JTextField();
-        txtCarrera = new javax.swing.JTextField();
         pswClave = new javax.swing.JPasswordField();
         bttnCrear = new javax.swing.JButton();
         Roles = new javax.swing.JComboBox<>();
+        Carreras = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(0, 255, 0));
         setClosable(true);
+        setForeground(new java.awt.Color(255, 255, 255));
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
@@ -103,6 +105,8 @@ public class CrearInicio extends javax.swing.JInternalFrame {
             }
         });
 
+        Carreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Tecnología Superior En Redes Y Telecomunicaciones", "Tecnología Superior En Automatización E Instrumentación", "Entrenamiento Deportivo Con Nivel Equivalente A Tecnología Superior", "Tecnología Superior En Desarrollo De Software", "Tecnología Superior En Mecánica Industrial", "Tecnología Superior En Procesamiento De Alimentos", "Tecnología Superior En Mecánica Automotriz", "Tecnología Superior En Biotecnología", "Tecnología Superior En Electricidad", "Tecnología Superior En Quimica", " ", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,6 +116,9 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(163, 163, 163)
+                                .addComponent(bttnCrear))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -124,24 +131,25 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel7))
-                                .addGap(136, 136, 136)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(pswClave)
-                                    .addComponent(txtUsu)
-                                    .addComponent(txtCarrera)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtTel)
-                                    .addComponent(txtApellidos)
-                                    .addComponent(txtNombres)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Roles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(163, 163, 163)
-                                .addComponent(bttnCrear))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(136, 136, 136)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(pswClave)
+                                            .addComponent(txtUsu)
+                                            .addComponent(txtCorreo)
+                                            .addComponent(txtTel)
+                                            .addComponent(txtApellidos)
+                                            .addComponent(txtNombres)
+                                            .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                                            .addComponent(Roles, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jLabel1)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,8 +194,8 @@ public class CrearInicio extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(Carreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(bttnCrear)
                 .addContainerGap())
@@ -200,7 +208,7 @@ public class CrearInicio extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     Administrador admin = new Administrador(txtCedula.getText(), Roles.getSelectedItem().toString(), txtNombres.getText(),
         txtApellidos.getText(), txtTel.getText(), txtCorreo.getText(),
-        txtUsu.getText(), new String(pswClave.getPassword()), txtCarrera.getText());
+        txtUsu.getText(), new String(pswClave.getPassword()), Carreras.getSelectedItem().toString());
 
 
     AdministradorControlador adminControlador = new AdministradorControlador(admin);
@@ -238,6 +246,7 @@ public class CrearInicio extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Carreras;
     private javax.swing.JComboBox<String> Roles;
     private javax.swing.JButton bttnCrear;
     private javax.swing.JLabel jLabel1;
@@ -252,7 +261,6 @@ public class CrearInicio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField pswClave;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombres;

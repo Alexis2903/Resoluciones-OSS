@@ -2,7 +2,13 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="ff" red="0" type="rgb"/>
+    </Property>
     <Property name="closable" type="boolean" value="true"/>
+    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
@@ -31,6 +37,10 @@
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
+                              <Component id="bttnCrear" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -44,22 +54,25 @@
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="pswClave" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtUsu" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtCarrera" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtCorreo" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtTel" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtApellidos" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtNombres" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtCedula" alignment="0" min="-2" pref="236" max="-2" attributes="0"/>
-                                  <Component id="Roles" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="pswClave" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtUsu" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtCorreo" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtTel" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtApellidos" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtNombres" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="txtCedula" alignment="0" pref="236" max="32767" attributes="0"/>
+                                          <Component id="Roles" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="Carreras" min="-2" pref="236" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                              <Component id="bttnCrear" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -68,7 +81,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace pref="175" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,8 +139,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCarrera" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Carreras" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
               <Component id="bttnCrear" min="-2" max="-2" attributes="0"/>
@@ -229,8 +242,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsu">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCarrera">
-    </Component>
     <Component class="javax.swing.JPasswordField" name="pswClave">
     </Component>
     <Component class="javax.swing.JButton" name="bttnCrear">
@@ -259,6 +270,30 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RolesActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Carreras">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="13">
+            <StringItem index="0" value="Selecionar"/>
+            <StringItem index="1" value="Tecnolog&#xed;a Superior En Redes Y Telecomunicaciones"/>
+            <StringItem index="2" value="Tecnolog&#xed;a Superior En Automatizaci&#xf3;n E Instrumentaci&#xf3;n"/>
+            <StringItem index="3" value="Entrenamiento Deportivo Con Nivel Equivalente A Tecnolog&#xed;a Superior"/>
+            <StringItem index="4" value="Tecnolog&#xed;a Superior En Desarrollo De Software"/>
+            <StringItem index="5" value="Tecnolog&#xed;a Superior En Mec&#xe1;nica Industrial"/>
+            <StringItem index="6" value="Tecnolog&#xed;a Superior En Procesamiento De Alimentos"/>
+            <StringItem index="7" value="Tecnolog&#xed;a Superior En Mec&#xe1;nica Automotriz"/>
+            <StringItem index="8" value="Tecnolog&#xed;a Superior En Biotecnolog&#xed;a"/>
+            <StringItem index="9" value="Tecnolog&#xed;a Superior En Electricidad"/>
+            <StringItem index="10" value="Tecnolog&#xed;a Superior En Quimica"/>
+            <StringItem index="11" value=" "/>
+            <StringItem index="12" value=" "/>
+          </StringArray>
+        </Property>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
