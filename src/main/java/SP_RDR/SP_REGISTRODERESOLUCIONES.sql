@@ -179,3 +179,99 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_InsertarActaReunion(
+    IN p_idResolucion INT,
+    IN p_fechaHora VARCHAR(255),
+    IN p_tipoOrdinariaExtraordinaria VARCHAR(255),
+    IN p_observaciones VARCHAR(255)
+)
+BEGIN
+    -- Lógica para insertar acta de reunión en tu base de datos
+    INSERT INTO acta_de_reunion (ID_RESOLUCION, FECHAYHORA, TIPO_ORDINARIA_EXTRAORDINARIA, OBSERVACIONES)
+    VALUES (p_idResolucion, p_fechaHora, p_tipoOrdinariaExtraordinaria, p_observaciones);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_VisualizarResolucionesAprobadas()
+BEGIN
+    -- Lógica para obtener resoluciones aprobadas en tu base de datos
+    SELECT ID_RESOLUCION, DESCARGAR_PDF_APROBADO
+    FROM resoluciones_aprobadas;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_insertar_pedido(
+    IN p_nroPedido VARCHAR(255),
+    IN p_cedulaPersona INT,
+    IN p_asunto VARCHAR(255),
+    IN p_fechaIngresoOficio DATE,
+    IN p_archivoPdf VARCHAR(255)
+)
+BEGIN
+    -- Lógica para insertar un pedido en tu base de datos
+    INSERT INTO pedido (NRO_PEDIDO, CEDULA_PERSONA, ASUNTO, FECHAINGRESO_OFICIO, ARCHIVOPDF)
+    VALUES (p_nroPedido, p_cedulaPersona, p_asunto, p_fechaIngresoOficio, p_archivoPdf);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_obtener_datos_pedidos()
+BEGIN
+    -- Lógica para obtener datos de pedidos en tu base de datos
+    SELECT NRO_PEDIDO, CEDULA_PERSONA, ASUNTO, FECHAINGRESO_OFICIO, ARCHIVOPDF
+    FROM pedido;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_BuscarPedidoPorNumero(
+    IN p_numeroPedido VARCHAR(255)
+)
+BEGIN
+    -- Lógica para buscar un pedido por número de pedido en tu base de datos
+    SELECT NRO_PEDIDO, CEDULA_PERSONA, ASUNTO, FECHAINGRESO_OFICIO, ARCHIVOPDF
+    FROM pedido
+    WHERE NRO_PEDIDO = p_numeroPedido;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_EliminarPedido(
+    IN p_numeroPedido VARCHAR(255)
+)
+BEGIN
+    -- Lógica para eliminar un pedido de tu base de datos
+    DELETE FROM pedido
+    WHERE NRO_PEDIDO = p_numeroPedido;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_RegistrarResolucion(
+    IN p_NRO_PEDIDO VARCHAR(255),
+    IN p_fechaResolucion DATE,
+    IN p_estadoAprobadoNoAprobado VARCHAR(255),
+    IN p_descargarPdfAprobado VARCHAR(255)
+)
+BEGIN
+    -- Lógica para registrar una resolución en tu base de datos
+    INSERT INTO Resolucion (NRO_PEDIDO, FECHA_RESOLUCION, ESTADO_APROBADO_NO_APROBADO, DESCARGAR_PDF_APROBADO)
+    VALUES (p_NRO_PEDIDO, p_fechaResolucion, p_estadoAprobadoNoAprobado, p_descargarPdfAprobado);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_BuscarPedidoPorNumeroPedido(
+    IN p_numeroPedido VARCHAR(255)
+)
+BEGIN
+    -- Lógica para buscar un pedido por número de pedido en tu base de datos
+    SELECT NRO_PEDIDO, ARCHIVOPDF
+    FROM Resolucion
+    WHERE NRO_PEDIDO = p_numeroPedido;
+END //
+DELIMITER ;

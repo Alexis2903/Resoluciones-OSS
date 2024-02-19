@@ -14,10 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author jefe
- */
+
 public class AdministradorControlador {
  private Administrador admi;
  private Administrador_IS admiIS;
@@ -68,10 +65,8 @@ public class AdministradorControlador {
 
 public void insertarAdministrador(Administrador admin) {
     try {
-        // Utiliza marcadores de posición en la llamada al stored procedure
         String sql = "{call sp_CrearCuentaUsuario(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         try (CallableStatement cs = conectar.prepareCall(sql)) {
-            // Establece los parámetros del stored procedure utilizando setString
             cs.setString(1, admin.getCedulaPersona());
             cs.setString(2, admin.getNombre_actor());
             cs.setString(3, admin.getNombres());
@@ -82,7 +77,7 @@ public void insertarAdministrador(Administrador admin) {
             cs.setString(8, admin.getContrasena());
             cs.setString(9, admin.getCarrera());
 
-            // Ejecuta el stored procedure
+
             cs.executeUpdate();
 
             System.out.println("Cuenta creada "); 
@@ -102,7 +97,6 @@ public void insertarAdministrador(Administrador admin) {
             
             ResultSet res = ejecutar.executeQuery();
             
-            // Si hay resultados, entonces el usuario y la contraseña son correctos
             return res.next();
         } catch (SQLException e) {
             System.err.println("Error al autenticar: " + e.getMessage());
@@ -112,8 +106,8 @@ public void insertarAdministrador(Administrador admin) {
       public int recuperarContraseña(Administrador_RC admiRC) {
     try {
 
-        // Ajusta los parámetros según tus necesidades
 
+        
         String sql = "CALL sp_RecuperarContraseña('" + admiRC.getCedula() + "','" + admiRC.getCorreo() + "','" + admiRC.getNuevaContraseña() + "','" + admiRC.getConfirmarContraseña() + "')";
         CallableStatement call = conectar.prepareCall(sql);
 

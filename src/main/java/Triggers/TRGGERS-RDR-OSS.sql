@@ -1,0 +1,152 @@
+-- Crear la tabla de auditoría de operaciones de personas
+CREATE TABLE IF NOT EXISTS AUDITORIA_OPERACIONES_PERSONA (
+    ID_AUDITORIA INT AUTO_INCREMENT PRIMARY KEY,
+    CEDULA_PERSONA int,
+    NOMBRES VARCHAR(45),
+    ACCION VARCHAR(20),
+    FECHA_AUDITORIA DATETIME,
+    FOREIGN KEY (CEDULA_PERSONA) REFERENCES PERSONA(CEDULA_PERSONA)
+);
+
+-- Crear trigger para INSERT
+DELIMITER //
+CREATE TRIGGER tr_audit_persona_insert
+AFTER INSERT
+ON PERSONA
+FOR EACH ROW
+BEGIN
+    -- Insertar registro de auditoría para inserción
+    INSERT INTO AUDITORIA_OPERACIONES_PERSONA (CEDULA_PERSONA, NOMBRES, ACCION, FECHA_AUDITORIA)
+    VALUES (NEW.CEDULA_PERSONA, NEW.NOMBRES, 'Inserción', NOW());
+END;
+//
+DELIMITER ;
+
+-- Crear trigger para UPDATE
+DELIMITER //
+CREATE TRIGGER tr_audit_persona_update
+AFTER UPDATE
+ON PERSONA
+FOR EACH ROW
+BEGIN
+    -- Insertar registro de auditoría para modificación
+    INSERT INTO AUDITORIA_OPERACIONES_PERSONA (CEDULA_PERSONA, NOMBRES, ACCION, FECHA_AUDITORIA)
+    VALUES (NEW.CEDULA_PERSONA, NEW.NOMBRES, 'Modificación', NOW());
+END;
+//
+DELIMITER ;
+
+-- Crear trigger para DELETE
+DELIMITER //
+CREATE TRIGGER tr_audit_persona_delete
+BEFORE DELETE
+ON PERSONA
+FOR EACH ROW
+BEGIN
+    -- Desactivar temporaralmente las restricciones de clave foránea
+    SET foreign_key_checks = 0;
+
+    -- Insertar registro de auditoría para eliminación
+    INSERT INTO AUDITORIA_OPERACIONES_PERSONA (CEDULA_PERSONA, NOMBRES, ACCION, FECHA_AUDITORIA)
+    VALUES (OLD.CEDULA_PERSONA, OLD.NOMBRES, 'Eliminación', NOW());
+END;
+//
+DELIMITER ;
+
+
+CREATE TABLE IF NOT EXISTS AUDITORIA_PEDIDOS (
+    ID_AUDITORIA_PEDIDO INT AUTO_INCREMENT PRIMARY KEY,
+    NRO_PEDIDO VARCHAR(50),
+    ACCION VARCHAR(20),
+    FECHA_AUDITORIA DATETIME,
+    FOREIGN KEY (NRO_PEDIDO) REFERENCES PEDIDO(NRO_PEDIDO)
+);
+
+-- Crear trigger para INSERT en la tabla PEDIDO
+DELIMITER //
+CREATE TRIGGER tr_audit_pedido_insert
+AFTER INSERT
+ON PEDIDO
+FOR EACH ROW
+BEGIN
+    -- Insertar registro de auditoría para inserción
+    INSERT INTO AUDITORIA_PEDIDOS (NRO_PEDIDO, ACCION, FECHA_AUDITORIA)
+    VALUES (NEW.NRO_PEDIDO, 'Inserción', NOW());
+END;
+//
+DELIMITER ;
+
+-- Crear trigger para DELETE en la tabla PEDIDO
+DELIMITER //
+CREATE TRIGGER tr_audit_pedido_delete
+BEFORE DELETE
+ON PEDIDO
+FOR EACH ROW
+BEGIN
+    -- Desactivar temporaralmente las restricciones de clave foránea
+    SET foreign_key_checks = 0;
+
+    -- Insertar registro de auditoría para eliminación
+    INSERT INTO AUDITORIA_PEDIDOS (NRO_PEDIDO, ACCION, FECHA_AUDITORIA)
+    VALUES (OLD.NRO_PEDIDO, 'Eliminación', NOW());
+END;
+//
+DELIMITER ;
+
+
+CREATE TABLE IF NOT EXISTS AUDITORIA_RESOLUCIONES (
+    ID_AUDITORIA_RESOLUCION INT AUTO_INCREMENT PRIMARY KEY,
+    NRO_PEDIDO VARCHAR(50),
+    ESTADO_APROBADO_NO_APROBADO VARCHAR(45),
+    ACCION VARCHAR(20),
+    FECHA_AUDITORIA DATETIME,
+    FOREIGN KEY (NRO_PEDIDO) REFERENCES PEDIDO(NRO_PEDIDO)
+);
+
+-- Trigger para INSERT en la tabla RESOLUCION
+DELIMITER //
+CREATE TRIGGER tr_audit_resolucion_insert
+AFTER INSERT
+ON RESOLUCION
+FOR EACH ROW
+BEGIN
+    -- Insertar registro de auditoría para inserción
+    INSERT INTO AUDITORIA_RESOLUCIONES (NRO_PEDIDO, ESTADO_APROBADO_NO_APROBADO, ACCION, FECHA_AUDITORIA)
+    VALUES (NEW.NRO_PEDIDO, NEW.ESTADO_APROBADO_NO_APROBADO, 'Inserción', NOW());
+END;
+//
+DELIMITER ;
+
+
+CREATE TABLE IF NOT EXISTS auditar_actas_reunion (
+    ID_AUDITORIA INT AUTO_INCREMENT PRIMARY KEY,
+    ID_RESOLUCION INT,
+    ACCION VARCHAR(20),
+    FECHA_AUDITORIA DATETIME,
+    FOREIGN KEY (ID_RESOLUCION) REFERENCES acta_de_reunion(ID_RESOLUCION)
+);
+
+
+DELIMITER //
+
+CREATE TRIGGER tr_acta_reunion_after_insert
+AFTER INSERT
+ON acta_de_reunion FOR EACH ROW
+
+BEGIN
+    DECLARE id_resolucion_inserted INT;
+
+    -- Obtener el ID_RESOLUCION del nuevo acta de reunión
+    SET id_resolucion_inserted = NEW.ID_RESOLUCION;
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO auditar_actas_reunion (ID_RESOLUCION, ACCION, FECHA_AUDITORIA)
+    VALUES (id_resolucion_inserted, 'Inserción', NOW());
+
+END;
+//
+
+DELIMITER ;
+
+
+

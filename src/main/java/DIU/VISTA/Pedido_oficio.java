@@ -20,9 +20,8 @@ public class Pedido_oficio extends javax.swing.JInternalFrame {
 
        ArrayList<Pedido> ListaPedidos = new ArrayList<>();
       DefaultTableModel modelo = new DefaultTableModel();
-    /**
-     * Creates new form Pedido_oficio
-     */
+   
+      
     public Pedido_oficio() {
         initComponents();
          setModelo();
@@ -312,8 +311,8 @@ public void setDatos() {
     }//GEN-LAST:event_bttnGenerarpdfActionPerformed
 
     private void bttnabrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnabrirActionPerformed
-        // TODO add your handling code here:
-    int filaSeleccionada = tblPedidos.getSelectedRow();
+
+        int filaSeleccionada = tblPedidos.getSelectedRow();
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblPedidos.getValueAt(filaSeleccionada, 4).toString();
@@ -334,17 +333,15 @@ public void setDatos() {
     }//GEN-LAST:event_bttnabrirActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        // TODO add your handling code here:
         limpiarTabla();
         cargarPedidos();   
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void BttnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttnBuscarActionPerformed
-        // TODO add your handling code here:
       String numeroPedido = txtNumeroPedido.getText();
 
     if (!numeroPedido.isEmpty()) {
-        // Llamar al controlador para buscar el pedido por número
+
         Controlador_pedido controladorPedido = new Controlador_pedido();
         ArrayList<Object[]> listaFilas = controladorPedido.buscarPedidoPorNumero(numeroPedido);
 
@@ -373,7 +370,7 @@ public void setDatos() {
         String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;
 
-        // Aquí obtenemos la ruta completa del archivo que deseamos eliminar
+
         File archivoEliminar = new File(rutaCompletaArchivo);
 
         if (archivoEliminar.exists()) {
@@ -392,11 +389,10 @@ public void setDatos() {
     String numeroPedido = txtNumeroPedido.getText();
 
         if (!numeroPedido.isEmpty()) {
-            // Llamar al controlador para eliminar el pedido y el documento
+
             Controlador_pedido_DCG controladorPedido = new Controlador_pedido_DCG();
             controladorPedido.eliminarPedido(numeroPedido);
 
-            // Limpiar los campos y recargar la tabla después de la eliminación
             limpiarCampos();
             cargarPedidos();
             JOptionPane.showMessageDialog(this, "Pedido y documento eliminados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);

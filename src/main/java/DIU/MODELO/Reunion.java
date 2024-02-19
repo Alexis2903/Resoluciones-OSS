@@ -18,6 +18,15 @@ public class Reunion {
     private String tipoOrdinariaExtraordinaria;
     private String observaciones;
 
+    
+    public Reunion(int idResolucion, Timestamp fechaHora, String tipoOrdinariaExtraordinaria, String observaciones) {
+        this.idResolucion = idResolucion;
+        this.fechaHora = fechaHora;
+        this.tipoOrdinariaExtraordinaria = tipoOrdinariaExtraordinaria;
+        this.observaciones = observaciones;
+    }
+
+ 
     public int getIdReunion() {
         return idReunion;
     }
@@ -58,13 +67,5 @@ public class Reunion {
         this.observaciones = observaciones;
     }
 
-    public Reunion(int idResolucion, Timestamp fechaHora, String tipoOrdinariaExtraordinaria, String observaciones) {
-        this.idResolucion = idResolucion;
-        this.fechaHora = fechaHora;
-        this.tipoOrdinariaExtraordinaria = tipoOrdinariaExtraordinaria;
-        this.observaciones = observaciones;
-    }
-
- 
     
 }

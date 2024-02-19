@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -39,7 +38,7 @@ public class PersonaControlador {
   
 public void insertarPersona(Persona p) {
     try {
-        // Call the stored procedure to create a person
+
         String sql = "{CALL CrearPersona(?, ?, ?, ?, ?)}";
         ejecutar = (PreparedStatement) conectado.prepareCall(sql);
         ejecutar.setString(1, p.getCedula());
@@ -48,7 +47,6 @@ public void insertarPersona(Persona p) {
         ejecutar.setString(4, p.getTelefono());
         ejecutar.setString(5, p.getCorreo());
         
-        // Execute the stored procedure
         var resultado = ejecutar.executeUpdate();
         
         if (resultado > 0) {
@@ -161,7 +159,6 @@ public boolean existeCedula(String cedula) {
         cs.registerOutParameter(2, java.sql.Types.INTEGER); // Registro del parámetro de salida
         cs.execute();
 
-        // Si el valor del parámetro de salida es mayor que 0, la cédula existe
         return cs.getInt(2) > 0;
     } catch (SQLException e) {
         System.out.println("ERROR SQL: " + e.getMessage());
@@ -177,7 +174,7 @@ public void eliminarPersona(String cedula) {
             ejecutar.setString(1, cedula);
             ejecutar.executeUpdate();
             
-            JOptionPane.showMessageDialog(null, "Persona eliminada con éxito");
+            System.out.println("Persona eliminada con éxito");
 
             ejecutar.close();
         } catch (SQLException e) {

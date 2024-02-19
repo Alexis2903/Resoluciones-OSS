@@ -17,6 +17,16 @@ public class Pedido {
     private Date fechaIngresoOficio;
     private String archivoPdf;
 
+
+    public Pedido(String nroPedido, int cedulaPersona, String asunto, Date fechaIngresoOficio, String archivoPdf) {
+        this.nroPedido = nroPedido;
+        this.cedulaPersona = cedulaPersona;
+        this.asunto = asunto;
+        this.fechaIngresoOficio = fechaIngresoOficio;
+        this.archivoPdf = archivoPdf;
+    }
+    
+
     public String getNroPedido() {
         return nroPedido;
     }
@@ -57,13 +67,5 @@ public class Pedido {
         this.archivoPdf = archivoPdf;
     }
 
-    public Pedido(String nroPedido, int cedulaPersona, String asunto, Date fechaIngresoOficio, String archivoPdf) {
-        this.nroPedido = nroPedido;
-        this.cedulaPersona = cedulaPersona;
-        this.asunto = asunto;
-        this.fechaIngresoOficio = fechaIngresoOficio;
-        this.archivoPdf = archivoPdf;
-    }
-    
     
 }

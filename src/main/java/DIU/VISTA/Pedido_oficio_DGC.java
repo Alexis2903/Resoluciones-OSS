@@ -14,18 +14,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jefe
- */
+
 public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
 
     
        ArrayList<Pedido> ListaPedidos = new ArrayList<>();
       DefaultTableModel modelo = new DefaultTableModel();
-    /**
-     * Creates new form Pedido_oficio_DGC
-     */
+
+      
     public Pedido_oficio_DGC() {
         initComponents();
                  setModelo();
@@ -291,7 +287,7 @@ public void setDatos() {
         String numeroPedido = txtNumeroPedido.getText();
 
         if (!numeroPedido.isEmpty()) {
-            // Llamar al controlador para buscar el pedido por número
+
             Controlador_pedido_DCG controladorPedido = new Controlador_pedido_DCG();
             ArrayList<Object[]> listaFilas = controladorPedido.buscarPedidoPorNumero(numeroPedido);
 
@@ -344,8 +340,8 @@ public void setDatos() {
     }//GEN-LAST:event_bttnGenerarpdfActionPerformed
 
     private void bttnabrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnabrirActionPerformed
-        // TODO add your handling code here:
-    int filaSeleccionada = tblPedidos.getSelectedRow();
+
+        int filaSeleccionada = tblPedidos.getSelectedRow();
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblPedidos.getValueAt(filaSeleccionada, 4).toString();
@@ -395,11 +391,11 @@ public void setDatos() {
     String numeroPedido = txtNumeroPedido.getText();
 
         if (!numeroPedido.isEmpty()) {
-            // Llamar al controlador para eliminar el pedido y el documento
+
             Controlador_pedido_DCG controladorPedido = new Controlador_pedido_DCG();
             controladorPedido.eliminarPedido(numeroPedido);
 
-            // Limpiar los campos y recargar la tabla después de la eliminación
+
             limpiarCampos();
             cargarPedidos();
             JOptionPane.showMessageDialog(this, "Pedido y documento eliminados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -409,7 +405,6 @@ public void setDatos() {
     }//GEN-LAST:event_bttneliminarActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        // TODO add your handling code here:
         setDatos();
         cargarPedidos();
     }//GEN-LAST:event_formInternalFrameActivated

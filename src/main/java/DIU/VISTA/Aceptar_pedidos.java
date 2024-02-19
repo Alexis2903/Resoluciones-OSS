@@ -13,18 +13,15 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jefe
- */
+
+
 public class Aceptar_pedidos extends javax.swing.JInternalFrame {
 
       ArrayList<Resolucion> listaResoluciones = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel();
 
-    /**
-     * Creates new form Aceptar_pedidos
-     */
+
+    
     public Aceptar_pedidos() {
         initComponents();
         setModelo();
@@ -147,7 +144,7 @@ public void setModelo() {
         jScrollPane1.setViewportView(tblRes);
 
         ABRIR.setForeground(new java.awt.Color(0, 51, 255));
-        ABRIR.setText("ABRIR PDF DEL ESTUDIANTE");
+        ABRIR.setText("ABRIR DOCX DEL ESTUDIANTE");
         ABRIR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         ABRIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +153,7 @@ public void setModelo() {
         });
 
         PDFDOC.setForeground(new java.awt.Color(0, 0, 255));
-        PDFDOC.setText("ABRIR PDF DEL DGC");
+        PDFDOC.setText("ABRIR DOCX DEL DGC");
         PDFDOC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         PDFDOC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,7 +285,7 @@ public void setModelo() {
  
     private void bttnRegistrarResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnRegistrarResolucionActionPerformed
  try {
-        // Obtener datos de los componentes de la interfaz
+
         String numeroPedido = txtPedido.getText();
         Date fechaResolucion = Date.valueOf(txtFecha.getText());
         String estadoAprobadoNoAprobado = bAprobado.isSelected() ? "APROBADO" : "NO APROBADO";        
@@ -304,29 +301,29 @@ public void setModelo() {
     }//GEN-LAST:event_bttnRegistrarResolucionActionPerformed
 
     private void jCalendar1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendar1PropertyChange
-        // TODO add your handling code here:
-      if(evt.getOldValue() != null) {
+
+        if(evt.getOldValue() != null) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         txtFecha.setText(dateFormat.format(jCalendar1.getCalendar().getTime()));
     }
     }//GEN-LAST:event_jCalendar1PropertyChange
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        cargarDatos(); // Carga datos solo si la lista está vacía
+        cargarDatos(); 
         setDatos();    
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void ABRIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ABRIRActionPerformed
-        // TODO add your handling code here:
-            int filaSeleccionada = tblRes.getSelectedRow();
+
+        int filaSeleccionada = tblRes.getSelectedRow();
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblRes.getValueAt(filaSeleccionada, 4).toString();
         //SARA
-        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
+       // String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
 
         //ALEXIS
-       // String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
+        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;
 
         try {
@@ -342,16 +339,16 @@ public void setModelo() {
     }//GEN-LAST:event_ABRIRActionPerformed
 
     private void PDFDOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PDFDOCActionPerformed
-        // TODO add your handling code here:
-     int filaSeleccionada = tblRes.getSelectedRow();
+
+        int filaSeleccionada = tblRes.getSelectedRow();
 
     if (filaSeleccionada != -1) {
         String nombreArchivo = tblRes.getValueAt(filaSeleccionada, 4).toString();
         //SARA
-        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+        //String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
 
         //ALEXIS
-        //String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+        String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
         
         
         String rutaCompletaArchivo = rutaGuardar + nombreArchivo;

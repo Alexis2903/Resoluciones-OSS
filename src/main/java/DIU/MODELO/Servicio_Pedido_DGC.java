@@ -67,7 +67,7 @@ public class Servicio_Pedido_DGC {
         paragraph.createRun().addBreak();
         paragraph.createRun().setText("Solicito el día de hoy: " + fecha);
         paragraph.createRun().addBreak();
-        paragraph.createRun().setText("Realizar una solicitud debido al asunto de: " + asunto);
+        paragraph.createRun().setText("Realizar una solicitud debido al asunto de : " + asunto);
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();
         paragraph.createRun().setText("Estimado/a Señor Director del Instituto superior Universitario 17 de Julio");
@@ -106,10 +106,10 @@ public class Servicio_Pedido_DGC {
     Date fechaFormateada = new Date(dateFormat.parse(fecha).getTime());
 
     //SARA
-        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+        //String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
 
     //ALEXIS
-    //String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
+    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_DGC\\";
 
     // Guardar el documento Word
     String fileName = "OficioDGC_" + numeroPedido + ".docx";

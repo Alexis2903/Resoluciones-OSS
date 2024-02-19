@@ -14,18 +14,15 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jefe
- */
+
+
 public class GestionPersona extends javax.swing.JInternalFrame {
    
     ArrayList<Persona> listaPersonas = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel();
    
-    /**
-     * Creates new form Persona
-     */
+ 
+    
     public GestionPersona() {
         initComponents();
         setModelo();
@@ -273,7 +270,7 @@ public void setDatos() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearActionPerformed
-        // TODO add your handling code here:
+
         Persona P=new Persona(txtCedulaP.getText(), txtNombres.getText(), txtApellidos.getText(), txtTelefono.getText(), txtCorreo.getText());
         PersonaControlador pC = new PersonaControlador();
         pC.insertarPersona(P);
@@ -333,15 +330,14 @@ public void setDatos() {
 
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        // TODO add your handling code here:
-   limpiarTabla();
+     limpiarTabla();
      cargarPersonas();    
     }//GEN-LAST:event_formInternalFrameActivated
 
 
     private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
-        // TODO add your handling code here:
-      try {
+
+        try {
         String cedulaAEliminar = txtCedulaP.getText();
 
         int confirmacion = JOptionPane.showConfirmDialog(
@@ -381,15 +377,15 @@ private void cargarPersonas() {
     PersonaControlador pC = new PersonaControlador();
     ArrayList<Object[]> listaFilas = pC.datosPersona();
 
-    // Limpiar la tabla antes de cargar nuevos datos
+
     limpiarTabla();
 
-    // Configurar el modelo de la tabla
+
     for (Object[] listaFila : listaFilas) {
         modelo.addRow(listaFila);
     }
 
-    // Configurar la selección de la tabla
+
     tblPersonas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
         public void valueChanged(ListSelectionEvent event) {
             cargarDatosPersonaSeleccionada(tblPersonas.getSelectedRow());

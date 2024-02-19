@@ -15,6 +15,13 @@ public class Resolucion {
     private String estadoAprobadoNoAprobado;
     private String descargarPdfAprobado;
 
+  
+      public Resolucion(String numeroPedido, Date fechaResolucion, String estadoAprobadoNoAprobado, String descargarPdfAprobado) {
+        this.numeroPedido = numeroPedido;
+        this.fechaResolucion = fechaResolucion;
+        this.estadoAprobadoNoAprobado = estadoAprobadoNoAprobado;
+        this.descargarPdfAprobado = descargarPdfAprobado;
+    }
     
     public int getIdResolucion() {
         return idResolucion;
@@ -56,13 +63,5 @@ public class Resolucion {
         this.descargarPdfAprobado = descargarPdfAprobado;
     }
 
-    public Resolucion(String numeroPedido, Date fechaResolucion, String estadoAprobadoNoAprobado, String descargarPdfAprobado) {
-        this.numeroPedido = numeroPedido;
-        this.fechaResolucion = fechaResolucion;
-        this.estadoAprobadoNoAprobado = estadoAprobadoNoAprobado;
-        this.descargarPdfAprobado = descargarPdfAprobado;
-    }
-    
-    
     
 }

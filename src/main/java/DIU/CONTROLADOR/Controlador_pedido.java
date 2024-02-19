@@ -13,10 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author jefe
- */
+
 public class Controlador_pedido {
     
      ConexionBDD conectar = new ConexionBDD();
@@ -28,12 +25,10 @@ public class Controlador_pedido {
     
     public void insertarPedido(String nroPedido, int cedulaPersona, String asunto, Date fechaIngresoOficio, String archivoPdf) {
      try {
-        // Check if the person has a valid ID_ACTOR
         if (personaHasValidActor(cedulaPersona)) {
             JOptionPane.showMessageDialog(null, "La persona tiene un ID_ACTOR válido. No puede realizar el oficio.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-            // Llamar al procedimiento almacenado para insertar un pedido
             String sql = "{CALL sp_insertar_pedido(?, ?, ?, ?, ?)}";
             ejecutar = (PreparedStatement) conectado.prepareCall(sql);
             ejecutar.setString(1, nroPedido);
@@ -42,7 +37,6 @@ public class Controlador_pedido {
             ejecutar.setDate(4, fechaIngresoOficio);
             ejecutar.setString(5, archivoPdf);
 
-            // Ejecutar el procedimiento almacenado
             var resultado = ejecutar.executeUpdate();
 
             if (resultado > 0) {
@@ -62,12 +56,10 @@ public class Controlador_pedido {
         ArrayList<Object[]> listaPedidos = new ArrayList<>();
 
         try {
-            // Llamar al procedimiento almacenado para obtener datos de pedidos
             String sql = "{CALL sp_obtener_datos_pedidos()}";
             ejecutar = (PreparedStatement) conectado.prepareCall(sql);
             ResultSet resultado = ejecutar.executeQuery();
 
-            // Procesar los resultados y agregarlos a la lista
             while (resultado.next()) {
                 Object[] datosPedido = new Object[6]; // Ajusta según la cantidad de columnas
                 datosPedido[0] = resultado.getString("NRO_PEDIDO");
@@ -81,7 +73,6 @@ public class Controlador_pedido {
 
             ejecutar.close();
         } catch (SQLException e) {
-            // Manejar la excepción según tus necesidades
             e.printStackTrace();
         }
 
@@ -91,13 +82,11 @@ public ArrayList<Object[]> buscarPedidoPorNumero(String numeroPedido) {
     ArrayList<Object[]> listaPedidos = new ArrayList<>();
 
     try {
-        // Llamar al procedimiento almacenado para buscar un pedido por número de pedido
         String sql = "{CALL sp_BuscarPedidoPorNumero(?)}";
         ejecutar = (PreparedStatement) conectado.prepareCall(sql);
         ejecutar.setString(1, numeroPedido);
         ResultSet resultado = ejecutar.executeQuery();
 
-        // Procesar los resultados y agregarlos a la lista
         while (resultado.next()) {
             Object[] datosPedido = new Object[5]; // Ajusta según la cantidad de columnas
             datosPedido[0] = resultado.getString("NRO_PEDIDO");
@@ -111,7 +100,6 @@ public ArrayList<Object[]> buscarPedidoPorNumero(String numeroPedido) {
 
         ejecutar.close();
     } catch (SQLException e) {
-        // Manejar la excepción según tus necesidades
         e.printStackTrace();
     }
 
@@ -138,14 +126,11 @@ public String obtenerArchivoPedido(String numeroPedido) {
 
 public void eliminarPedido(String numeroPedido) {
     try {
-        // Obtener la ruta del archivo asociado al pedido
         String rutaArchivo = obtenerArchivoPedido(numeroPedido);
 
         if (rutaArchivo != null && !rutaArchivo.isEmpty()) {
-            // Crear el objeto File con la ruta del archivo
             File file = new File(rutaArchivo);
 
-            // Verificar si el archivo existe y eliminarlo
             if (file.exists()) {
                 if (file.delete()) {
                     System.out.println("Archivo eliminado correctamente.");
@@ -157,7 +142,6 @@ public void eliminarPedido(String numeroPedido) {
             }
         }
 
-        // Llamar al procedimiento almacenado para eliminar el pedido de la base de datos
         String sql = "{CALL sp_EliminarPedido(?)}";
         try (PreparedStatement ejecutar = conectado.prepareCall(sql)) {
             ejecutar.setString(1, numeroPedido);

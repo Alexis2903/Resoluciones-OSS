@@ -44,10 +44,10 @@ public class ServicioPedido {
         // Agregar la imagen al párrafo vacío 
         XWPFRun imageRun = emptyParagraph.createRun();
         //SARA
-         FileInputStream imageStream = new FileInputStream("C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\resources\\logo-instituto.png");
+        // FileInputStream imageStream = new FileInputStream("C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\resources\\logo-instituto.png");
 
         //ALEXIS
-       // FileInputStream imageStream = new FileInputStream("C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\resources\\logo-instituto.png");
+       FileInputStream imageStream = new FileInputStream("C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\resources\\logo-instituto.png");
         imageRun.addPicture(imageStream, XWPFDocument.PICTURE_TYPE_PNG, "logo-instituto", Units.toEMU(100), Units.toEMU(100));
         imageStream.close();
         // Alinear el párrafo a la derecha
@@ -70,7 +70,9 @@ public class ServicioPedido {
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();
         paragraph.createRun().setText("Solicita el día de hoy: " + fecha);
-        paragraph.createRun().setText("Realizar una solicitud debido al asunto de: " + asunto);
+        paragraph.createRun().addBreak();
+        paragraph.createRun().addBreak();
+        paragraph.createRun().setText("Realizar una solicitud debido al asunto de" + asunto);
         paragraph.createRun().addBreak(); 
         paragraph.createRun().addBreak();
         paragraph.createRun().setText("Estimado/a Señor Director del Instituto superior Universitario 17 de Julio");
@@ -107,11 +109,11 @@ public class ServicioPedido {
 
     //SARA
     
-        String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
+        //String rutaGuardar = "C:\\Users\\59399\\Documents\\PROGRAMACIÓN JAVA\\proyecto_aula\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
 
     
     //ALEXIS
-    //String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
+    String rutaGuardar = "C:\\Users\\jefe\\OneDrive\\Escritorio\\PROYECTO 3RO\\Resoluciones-OSS\\src\\main\\java\\Oficio_Estudiantes\\";
 
     // Guardar el documento Word
     String fileName = "OficioEstudiante_" + numeroPedido + ".docx";
