@@ -144,9 +144,10 @@ public class MENU_ACTOR_Coordinador extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-          MENU_INICIODESESION menuInicioSesion = new MENU_INICIODESESION();
+        MENU_INICIODESESION menuInicioSesion = new MENU_INICIODESESION();
     menuInicioSesion.setVisible(true);
     this.dispose(); 
+        
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
