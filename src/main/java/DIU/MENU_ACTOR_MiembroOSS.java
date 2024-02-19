@@ -56,8 +56,10 @@ public class MENU_ACTOR_MiembroOSS extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGap(0, 466, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jMenu1.setText("Bienvenido MiembroOSS");
 

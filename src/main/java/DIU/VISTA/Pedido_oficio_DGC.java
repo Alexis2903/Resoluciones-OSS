@@ -60,6 +60,7 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         bttneliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -83,7 +84,8 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
             }
         });
 
-        tblPedidos.setBackground(new java.awt.Color(102, 255, 255));
+        tblPedidos.setBackground(new java.awt.Color(153, 255, 255));
+        tblPedidos.setFont(new java.awt.Font("Segoe UI Black", 0, 10)); // NOI18N
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -103,7 +105,9 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel5.setText("Ingrese la fecha ");
 
+        BttnBuscar.setForeground(new java.awt.Color(0, 0, 255));
         BttnBuscar.setText("BUSCAR OFICIO");
+        BttnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         BttnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BttnBuscarActionPerformed(evt);
@@ -113,27 +117,31 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel6.setText("Ingrese una descripcion de lo que desea solicitar");
 
-        jCalendar1.setBackground(new java.awt.Color(51, 51, 255));
-        jCalendar1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 255, 0)));
-        jCalendar1.setForeground(new java.awt.Color(204, 0, 0));
+        jCalendar1.setBackground(new java.awt.Color(255, 0, 0));
+        jCalendar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jCalendar1.setForeground(new java.awt.Color(0, 0, 204));
         jCalendar1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jCalendar1PropertyChange(evt);
             }
         });
 
-        bttnGenerarpdf.setText("GENERAR PDF ");
+        bttnGenerarpdf.setForeground(new java.awt.Color(0, 0, 255));
+        bttnGenerarpdf.setText("GENERAR DOCX");
+        bttnGenerarpdf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         bttnGenerarpdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnGenerarpdfActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel1.setText("Realizar Oficio Estudiantes");
+        jLabel1.setText("Realizar Oficio de Gestores,Docentes,Coordinadores");
 
-        bttnabrir.setText("ABRIR PDF ");
+        bttnabrir.setForeground(new java.awt.Color(0, 0, 255));
+        bttnabrir.setText("ABRIR DOCX");
+        bttnabrir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         bttnabrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttnabrirActionPerformed(evt);
@@ -143,7 +151,9 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("Ingrese el Nº Pedido");
 
+        bttneliminar.setForeground(new java.awt.Color(0, 51, 255));
         bttneliminar.setText("ELIMINAR OFICIO");
+        bttneliminar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         bttneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttneliminarActionPerformed(evt);
@@ -153,6 +163,8 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel3.setText("Ingrese la cedula de la persona");
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DDS2.jpg"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,6 +172,7 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -177,36 +190,41 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
                                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(12, 12, 12)
+                                    .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(bttneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BttnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bttnabrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(bttnGenerarpdf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1)))
+                                .addComponent(bttnabrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(BttnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bttneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(bttnGenerarpdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bttnGenerarpdf)
-                        .addGap(32, 32, 32)
-                        .addComponent(bttnabrir)
-                        .addGap(32, 32, 32)
-                        .addComponent(BttnBuscar)
-                        .addGap(32, 32, 32)
-                        .addComponent(bttneliminar))
+                        .addComponent(bttnGenerarpdf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(bttnabrir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(BttnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(bttneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -228,7 +246,7 @@ public class Pedido_oficio_DGC extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40)
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -451,6 +469,7 @@ private void tblPedidosValueChanged(javax.swing.event.ListSelectionEvent evt) {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPedidos;
     private javax.swing.JTextField txtArchivo;
