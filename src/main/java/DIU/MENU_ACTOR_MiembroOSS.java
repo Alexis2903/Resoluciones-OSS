@@ -120,6 +120,7 @@ public class MENU_ACTOR_MiembroOSS extends javax.swing.JFrame {
         Acta_Reunion AR=new Acta_Reunion();
         
         escritorio.add(AR);
+        AR.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
